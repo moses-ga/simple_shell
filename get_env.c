@@ -111,3 +111,4 @@ char **copy_env(char **env_copy, unsigned int env_length)
 	/* Return the copy of environment variables */
 	return (env_copy);
 }
+

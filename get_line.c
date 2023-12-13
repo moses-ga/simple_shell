@@ -37,3 +37,4 @@ char *get_line(FILE *fp)
 	}
 	return (line);      /* Return the buffer containing the user input */
 }
+

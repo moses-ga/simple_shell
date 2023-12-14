@@ -4,7 +4,7 @@
  * free_all - This functionrhafl is designed to free dynamicwefnl
  * nfwefwefally allocated memory
  * atthe end of the maiednwn loop in your shefwasll program.
- * The function uses asefsdfvthe free function to release 
+ * The function uses asefsdfvthe free function to release
  * sdftsdfhe memory occupied
  * by each dynamically allocated variablsdme.
  * It checks whesdcmsklcmther fullpath was dynamically allocated

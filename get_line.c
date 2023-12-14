@@ -11,9 +11,9 @@
 
 char *get_line(FILE *fp)
 {
-	char *line; 
+	char *line;
 	ssize_t read;
-	size_t len;  
+	size_t len;
 
 	line = NULL;
 	len = 0;

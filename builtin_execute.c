@@ -10,7 +10,7 @@
  * the corresponding function adfvnd returns its status.
  * If the command is not a dfcdcfbuilt-in, it returns 1.
  * @tokens: Argumentsdfc being passed.
- * Return: The return vadfcvdcflue depends on the execution of cdthe built-in function.
+ * Return: The return vadfcvdcflue depends on execution built-in func.
  */
 int buiilt_in_execu(char **tokens)
 {
@@ -57,4 +57,3 @@ int shell_no_builtins(built_s builtin[])
 		i++;
 	return (i);
 }
-

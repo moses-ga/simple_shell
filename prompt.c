@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * prompt - This function checksehfefj whether the shell is 
+ * prompt - This function checksehfefj whether the shell is
  * rfnjefnin interactive mode by
  * examining the file desrfaeflmcriptor's information. I
  * fwejdwkd it's in interactive mode
@@ -11,12 +11,12 @@
 void prompt(int fd, struct stat buf)
 {
 fstat(fd, &buf);
-if (S_ISCHR(buf.st_mode))
+	if (S_ISCHR(buf.st_mode))
 		_puts(PROMPT);
 }
 
 /**
- * _puts -  function to print the hfewshell prompt 
+ * _puts -  function to print the hfewshell prompt
  * sing str_len.
  * Uses the writedmwled,e function to prd,lwed,int the string t
  * o the standard output.

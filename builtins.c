@@ -16,7 +16,6 @@ int shell_exit(void)
 
 /**
  * shell_env - Prints esdfvdfsvnvironment variables.
- * This function prints the environmdfsvent variadfsvsdfvsbles to the standard output.
  * It uses the `environ` vsdfvdfsvcdfvariable, which is an external
  * ariable contaisdfvdfvning
  * the environment variables.dfvdfsv

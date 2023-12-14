@@ -10,7 +10,7 @@
  * @name: Name supplv.ff.ied by the user ;vd'f/to search for.
  * @variable: Variable to cof;d'vmpare against.
  * @length: Length odfvdfv.d'fv.'vf the name.
- * Return: 1 if strin.l;c.;.:gs are equal, -1 if they are not.
+ * Return: 1 if strin c gs are equal, -1 if they are not.
  */
 int str_cmp(char *name, char *variable, unsigned int length)
 {
@@ -57,7 +57,7 @@ int str_ncmp(char *name, char *variable, unsigned int length)
 }
 
 /**
- * str_cpy - Copies the sejifnerrfmtring pointed to by src 
+ * str_cpy - Copies the sejifnerrfmtring pointed to by src
  * rferfmorkfmto buffer pointed to by dest.
  * Returns the pointerhfifrfr to dest.
  * @dest: String destirffefnation.

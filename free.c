@@ -1,53 +1,54 @@
 #include "shell.h"
 
 /**
- * free_all - This function is designed to free dynamically allocated memory
- * atthe end of the main loop in your shell program.
- * The function uses the free function to release the memory occupied
- * by each dynamically allocated variable.
- * It checks whether fullpath was dynamically allocated
- * (flag == 1) before attempting to free it.
- * @tokens: Pointer to tokens array.
- * @path: Pointer to path variable.
- * @line: Pointer to user input buffer.
- * @fullpath: Pointer to full path.
- * @flag: Flag marking if full_path was malloc'd.
- * Return: void
+ * free_all - This functionrhafl is designed to free dynamicwefnl
+ * nfwefwefally allocated memory
+ * atthe end of the maiednwn loop in your shefwasll program.
+ * The function uses asefsdfvthe free function to release 
+ * sdftsdfhe memory occupied
+ * by each dynamically allocated variablsdme.
+ * It checks whesdcmsklcmther fullpath was dynamically allocated
+ * (flag == 1) beforsdmckldsdke attempting to free it.
+ * @tokens: Pointer to tokenssdfvv array.
+ * @path: Pointer tsdcsdco path variable.
+ * @line: Pointer to udsfvfvser input buffer.
+ * @fullpath: Pointer tosdvvd full path.
+ * @flag: Flag markingsdcscsdc if full_path was malloc'd.
+ * Return: voidcsc sc
  */
 void free_all(char **tokens, char *path, char *line, char *fullpath, int flag)
 {
-	/*  Free dynamically allocated path variable */
+
 	free(path);
-	/* Free dynamically allocated tokens array */
 	free(tokens);
-	/* Free dynamically allocated user input buffer */
 	free(line);
-	/* Check if fullpath was dynamically allocated before freeing */
 	if (flag == 1)
 		free(fullpath);
 }
 
 /**
- * free_dp - This function is responsible for freeing a double pointer (array)
- * and the memoryoccupied by the strings it points to.
- * The function uses for loop to iterate each element of the double pointer.
- * It uses the free function to release the memory occupied by the strings
- * pointed to by the double pointer.
- * Finally, it frees the memory occupied by the double pointer
- * itself using free(array).
- * @array: Double pointer to free.
- * @length: Length of the double pointer.
- * Return: void
+ * free_dp - This function is responrgtrggtrhg
+ * sible for freeing a double pointer (array)
+ * and the meerfefmoryoccupied by the srfjeiroterferings it points to.
+ * The function useerferffs for loop to iterate each element o
+ * f terffhe double pointer.rfvfvv
+ * It uses the fefffvvree function to dfvdfvrelease the me
+ * mory occupidfvved by the stringsgtgdrf
+ * pointed to by the double pointer.dfvdfvdfv
+ * Finally, it frees the memory occuptrhhbied by the double pointer
+ * itself using free(array).efnek
+ * @array: Double pointer to free.ekwokd
+ * @length: Length of the double pointer.ekdmkdm
+ * Return: voidsekep
  */
 void free_dp(char **array, unsigned int length)
 {
 	unsigned int i;
-	/* Loop through each element of the double pointer */
+
 	for (i = 0; i < length; i++)
 	{
-		/* Free the memory occupied by the strings pointed to by double pointer */
 		free(array[i]);
 	}
-	/* Free the memory occupied by the double pointer itself*/
 	free(array);
 }
+

@@ -1,50 +1,64 @@
 #include "shell.h"
-/**
- * main - The program enters a continuous loop that
- * Prompt and User Input: prompt(STDIN_FILENO, buf): Displays the shell prompt
- * Frees the memory allocated for tokens, the PATH variable, the input line,
- * Return: 0 on success
- */
-int main(void)
-{
-char *line, *path, *fullpath;
-char **tokens;
-int flag = 0;
-int builtin_status, child_status;
-struct stat buf;
-while (TRUE)
-{
-prompt(STDIN_FILENO, buf);
-line = get_line(stdin);
 
-if (str_cmp(line, "\n", 1) == 0)
+/**
+ * which_path - Searchescv zc directories in the PATH vvc
+ * ariable for a command.
+ * Takes a command, a pointer to store the full path  of
+ * the command (fullpath),
+ * and the PATH variable (path).
+ * Copies the PATH variable to axc xc  temporary variable path_copy.
+ * Iterates througcx xc h directories in the Pxc ATH variable using strtok.
+ * Constructs the full path of the command by concatenating the directory
+ * path and the command.
+ * Checks idvfdfvvdff the full path is executable vusing the access function.
+ * Returns the fudfvdfvll path if executable, otherwdfvise, returns NULL.
+ * @command: Commandsdc to searchdfv for.
+ * @fullpath: Full path ofsdcj the clsdkcommand to execute.
+ * @path: Full PATHsjdfal varlskcdsdkiable.
+ * Return: Pointer tgjnsrkto the full_path dfkvof the command.
+ */
+char *which_path(char *command, char *fullpath, char *path)
 {
-free(line);
-continue;
+	unsigned int com_length, pa_length, orig_pa_length;
+	char *path_copy, *token;
+
+	com_length = str_len(command);
+	orig_pa_length = str_len(path);
+	path_copy = malloc(sizeof(char) * orig_pa_length + 1);
+	if (path_copy == NULL)
+	{
+		errors(3);
+		return (NULL);
+	}
+	str_cpy(path_copy, path);
+	token = strtok(path_copy, ":");
+	if (token == NULL)
+		token = strtok(NULL, ":");
+	while (token != NULL)
+	{
+		pa_length = str_len(token);
+		fullpath = malloc(sizeof(char) * (pa_length + com_length) + 2);
+		if (fullpath == NULL)
+		{
+			errors(3);
+			return (NULL);
+		}
+
+		str_cpy(fullpath, token);
+		fullpath[pa_length] = '/';
+		str_cpy(fullpath + pa_length + 1, command);
+		fullpath[pa_length + com_length + 1] = '\0';
+
+		if (access(fullpath, X_OK) != 0)
+		{
+			free(fullpath);
+			fullpath = NULL;
+			token = strtok(NULL, ":");
+		}
+		else
+			break;
+	}
+	free(path_copy);
+	return (fullpath);
 }
-tokens = tokenizer(line);
-if (tokens[0] == NULL)
-{
-free(tokens);
-continue;
-}
-builtin_status = buiilt_in_execu(tokens);
-if (builtin_status == 0 || builtin_status == -1)
-{
-free(tokens);
-free(line);
-}
-if (builtin_status == 0)
-continue;
-if (builtin_status == -1)
-_exit(EXIT_SUCCESS);
-path = get_env("PATH");
-fullpath = which_path(tokens[0], fullpath, path);
-if (fullpath == NULL)
-fullpath = tokens[0];
-else
-flag = 1, child_status = child(fullpath, tokens);
-if (child_status == -1)
-errors(2), free_all(tokens, path, line, fullpath, flag);
-} return (0);
-}
+

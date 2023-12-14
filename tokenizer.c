@@ -1,40 +1,42 @@
 #include "shell.h"
 
 /**
- * tokenizer - Tokenizes a string into an array of tokens.
- * Takes a user input string (str) as input.
- * Allocates memory for an array of tokens (tokens) using the malloc function.
- * Uses the strtok function to tokenize the input string based on the
- * specified delimiters ("\n\t\r ").
- * Stores each token in the tokens array.
- * The array of tokens is terminated with a NULL
- * pointer to indicate the end of tokens.
- * Returns a pointer to the array of tokens.
- * @str: User input string to be tokenized.
+ * tokenizer - Tokenizes jfevna string inmvklcmkcm
+ * to an array of tokens.fmkfmlcf
+ * Takes a user inpuc,dslc,sdt string (sc ,tr) as input.
+ * Allocates memory for an array oc,s;cf tokens (tokens) usingc,s;c,dc,
+ *  the malloc function.ld,s;,sc
+ * Uses the strtok functioc,s;c.sn to tokenic.xç.c.s
+ * ze the input string bkfdklfvased on the
+ * specified delimiters (dc scd sc"\n\t\r ").
+ * Stores each token in thedc cm\ tokensc,\c;l, array.
+ * The array of tokenmcd,cc ;xc,ßs is terminated with a NULL
+ * pointer to indicate tdkfvjfvjmzdklthe array of tokens.
+ * @str: User input stridnc\msc c:wqng to be tokenized.
  * Return: Pointer to an array of tokens.
  */
 char **tokenizer(char *str)
 {
-	char **tokens;         /* Pointer to store the array of tokens */
-	char *token;           /* Temporary variable to hold each token */
-	unsigned int i;        /* Index variable */
-	/* Allocate memory for the array of tokens */
+	char **tokens;
+	char *token;
+	unsigned int i;
+
 	tokens = malloc(sizeof(char) * BUFFER);
 	if (tokens == NULL)
 	{
-		errors(3); /* Print error message and exit memory allocation */
+		errors(3);
 		exit(EXIT_FAILURE);
 	}
-	/* strtok to extract tokens fro input str on delimiters("\n\t\r ") */
 	token = strtok(str, "\n\t\r ");
 	i = 0;
-	/* Iterate through the tokens and store them in the tokens array */
+
 	while (token != NULL)
 	{
-		tokens[i] = token;  /* Store the current token in the array */
-		token = strtok(NULL, "\n\t\r ");  /* Get the next token */
-		i++;               /* Move to the next index */
+		tokens[i] = token;
+		token = strtok(NULL, "\n\t\r ");
+		i++;
 	}
-	tokens[i] = NULL;  /* Set last element of array NULL mark end tokens */
-	return (tokens);       /* Return the pointer to the array of tokens */
+	tokens[i] = NULL;
+	return (tokens);
 }
+

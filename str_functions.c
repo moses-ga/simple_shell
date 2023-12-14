@@ -1,44 +1,45 @@
 #include "shell.h"
 
 /**
- * str_cmp - Compares two strings (name and variable) character by character up
- * to the specified length (length).
- * Returns 1 if the strings are not equal, -1 if the lengths are different,
- * and 0 if the strings are equal.
- * @name: Name supplied by the user to search for.
- * @variable: Variable to compare against.
- * @length: Length of the name.
- * Return: 1 if strings are equal, -1 if they are not.
+ * str_cmp - Comparerjgeoes two strings (name afvdl,d,lv
+ * nd variable) character byf,df.,d character up
+ * to the specified length (length).rfmfmekfm
+ * Returns 1 if the sfv,ld;v,vtrings are nofv,v
+ * t equal, -1 if the lefv;v.ngths are different,
+ * and 0 if the fv,d;fv.v are v'/fdequal.
+ * @name: Name supplv.ff.ied by the user ;vd'f/to search for.
+ * @variable: Variable to cof;d'vmpare against.
+ * @length: Length odfvdfv.d'fv.'vf the name.
+ * Return: 1 if strin.l;c.;.:gs are equal, -1 if they are not.
  */
 int str_cmp(char *name, char *variable, unsigned int length)
 {
 	unsigned int var_length;
 	unsigned int i;
-	/* Get the length of the variable string. */
+
 	var_length = str_len(variable);
-	/* If lengths are not equal, strings can't be the same. */
 	if (var_length != length)
 		return (-1);
 	i = 0;
-	/* Compare characters until a mismatch or end of the strings. */
+
 	while (name[i] != '\0' && variable[i] != '\0')
 	{
 		if (name[i] != variable[i])
-			return (1); /* Strings are not equal. */
+			return (1);
 		i++;
 	}
-	return (0); /* Strings are equal. */
+	return (0);
 }
 
 /**
- * str_ncmp - Compares two strings (name and variable) up to
- * a specified length (length).
- * Returns 1 if the strings are equal up to the specified length,
+ * str_ncmp - Compares two stjfekfjrings (name and variable) up to
+ * a specified length (length)dfnkjcc.
+ * Returns 1 if the strings are edcmkldcmdcqual up to the specified length,
  * and -1 otherwise.
- * @name: Name supplied by the user to search for.
- * @variable: Variable to compare against.
- * @length: Length to compare up to.
- * Return: 1 if strings are equal, -1 if they are not.
+ * @name: Name supplied by the ucdmslcmdsser to search for.
+ * @variable: Variable to comdmsokcmlcpare against.
+ * @length: Length to compcmsdl,care up to.
+ * Return: 1 if strings aredcm cms  equal, -1 if they are not.
  */
 int str_ncmp(char *name, char *variable, unsigned int length)
 {
@@ -46,44 +47,46 @@ int str_ncmp(char *name, char *variable, unsigned int length)
 
 	i = 0;
 
-	/* Compare characters up to the specified length. */
 	while (i < length)
 	{
 		if (name[i] != variable[i])
-			return (-1); /* Strings are not equal. */
+			return (-1);
 		i++;
 	}
-	return (1); /* Strings are equal. */
+	return (1);
 }
 
 /**
- * str_cpy - Copies the string pointed to by src to buffer pointed to by dest.
- * Returns the pointer to dest.
- * @dest: String destination.
- * @src: String source.
- * Return: The pointer to dest.
+ * str_cpy - Copies the sejifnerrfmtring pointed to by src 
+ * rferfmorkfmto buffer pointed to by dest.
+ * Returns the pointerhfifrfr to dest.
+ * @dest: String destirffefnation.
+ * @src: String srfrferfource.
+ * Return: The pointer trferffo dest.
  */
 char *str_cpy(char *dest, char *src)
 {
 	int i;
 	int j = str_len(src);
-	/* Copy characters from src to dest. */
+
 	for (i = 0; i <= j; i++)
 		dest[i] = src[i];
 	return (dest);
 }
 
 /**
- * str_len - Returns the length of the input string s. Counts characters until
+ * str_len - Returns the jerifjeir of the input string s.
+ *  Counts characters untenwkdmwdmil
  * the null terminator is encountered.
- * @s: String to be evaluated.
- * Return: Length of the string.
+ * @s: String to brjoee evaluated.
+ * Return: Length ofjrejf the string.
  */
 int str_len(char *s)
 {
 	int i = 0;
-	/* Count characters until the null terminator is encountered. */
+
 	while (s[i] != '\0')
 		i++;
 	return (i);
 }
+

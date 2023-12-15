@@ -1,11 +1,13 @@
 #include "myShell.h"
 
 /**
- * _myhistory - displays the history list, one command by line, preceded
- *              with line numbers, starting at 0.
- * @info: Structure containing potential arguments. Used to maintain
- *        constant function prototype.
- *  Return: Always 0
+ * _myhistory - displadfys the histdfory list, one commadfnd by
+ * line, predfdfceded
+ * with line nudfmbers, startidfng at 0.
+ * @info: Strucdfture contaidfning potedfntial argudfments.
+ * Used to maindftain
+ * constdfdfant funcdftion protodftype.
+ *  Return: Alwadfys 0
  */
 int _myhistory(info_t *info)
 {
@@ -14,11 +16,11 @@ int _myhistory(info_t *info)
 }
 
 /**
- * unset_alias - sets alias to string
- * @info: parameter struct
- * @str: the string alias
+ * unset_alias - sedffgts alias to sfgtring
+ * @info: paramefdgter strucfgt
+ * @str: the stfring aliasf
  *
- * Return: Always 0 on success, 1 on error
+ * Return: Always 0 on succfess, 1 on errfdgor
  */
 int unset_alias(info_t *info, char *str)
 {
@@ -37,11 +39,11 @@ int unset_alias(info_t *info, char *str)
 }
 
 /**
- * set_alias - sets alias to string
- * @info: parameter struct
- * @str: the string alias
+ * set_alias - seffgts alias to strfgding
+ * @info: paramedfgter strufct
+ * @str: the strifgng alifgas
  *
- * Return: Always 0 on success, 1 on error
+ * Return: Alwfdays 0 on sufgccess, 1 on error
  */
 int set_alias(info_t *info, char *str)
 {
@@ -58,10 +60,10 @@ int set_alias(info_t *info, char *str)
 }
 
 /**
- * print_alias - prints an alias string
+ * print_alias - prifnts an alidffas string
  * @node: the alias node
  *
- * Return: Always 0 on success, 1 on error
+ * Return: Always 0 on sucdffdcess, 1 on error
  */
 int print_alias(list_t *node)
 {
@@ -81,10 +83,11 @@ int print_alias(list_t *node)
 }
 
 /**
- * _myalias - mimics the alias builtin (man alias)
- * @info: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
- *  Return: Always 0
+ * _myalias - mimics thdfe aliasf builtin (man alias)
+ * @info: Structure contafgining potefgdntial argumdfgents.
+ * Used to maidfgntain
+ *          constdfgdfgant function protofgdtype.
+ *  Return: Alwadfgys 0
  */
 int _myalias(info_t *info)
 {

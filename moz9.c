@@ -1,21 +1,20 @@
 #include "myShell.h"
 
 /**
- * input_buf - buffers chained commands
- * @info: parameter struct
- * @buf: address of buffer
- * @len: address of len var
+ * input_buf - bufftrers chainrted commarends
+ * @info: paraermeter strtruct
+ * @buf: addretrss of buftrefer
+ * @len: addrtress of len trvar
  *
- * Return: bytes read
+ * Return: byttres reatrd
  */
 ssize_t input_buf(info_t *info, char **buf, size_t *len)
 {
 	ssize_t r = 0;
 	size_t len_p = 0;
 
-	if (!*len) /* if nothing left in the buffer, fill it */
+	if (!*len)
 	{
-		/*bfree((void **)info->cmd_buf);*/
 		free(*buf);
 		*buf = NULL;
 		signal(SIGINT, sigintHandler);
@@ -28,13 +27,17 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 		{
 			if ((*buf)[r - 1] == '\n')
 			{
-				(*buf)[r - 1] = '\0'; /* remove trailing newline */
+				(*buf)[r - 1] = '\0';
 				r--;
 			}
 			info->linnecnter_flg = 1;
 			remove_comments(*buf);
+<<<<<<< HEAD
+			build_history_list(info, *buf, info->histcount++);
+=======
 			build_history_list(info, *buf, info->histcnter++);
 			/* if (_strchr(*buf, ';')) is this a command chain? */
+>>>>>>> 771bfd101e25d71d57932670b064105e740373bc
 			{
 				*len = r;
 				info->command_buf = buf;
@@ -45,56 +48,60 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 }
 
 /**
- * get_input - gets a line minus the newline
- * @info: parameter struct
+ * get_input - gets a linedf minus the newlfgdine
+ * @info: paradfgmeter strdfguct
  *
- * Return: bytes read
+ * Return: bytexcvcvxs read
  */
 ssize_t get_input(info_t *info)
 {
-	static char *buf; /* the ';' command chain buffer */
+	static char *buf;
 	static size_t i, j, len;
 	ssize_t r = 0;
 	char **buf_p = &(info->arnt), *p;
 
 	_putchar(BUF_FLUSH);
 	r = input_buf(info, &buf, &len);
-	if (r == -1) /* EOF */
+	if (r == -1)
 		return (-1);
-	if (len)	/* we have commands left in the chain buffer */
+	if (len)
 	{
-		j = i; /* init new iterator to current buf position */
-		p = buf + i; /* get pointer for return */
+		j = i;
+		p = buf + i;
 
 		check_chain(info, buf, &j, i, len);
-		while (j < len) /* iterate to semicolon or end */
+		while (j < len)
 		{
 			if (is_chain(info, buf, &j))
 				break;
 			j++;
 		}
 
-		i = j + 1; /* increment past nulled ';'' */
-		if (i >= len) /* reached end of buffer? */
+		i = j + 1;
+		if (i >= len)
 		{
+<<<<<<< HEAD
+			i = len = 0;
+			info->cmd_buf_type = CMD_NORM;
+=======
 			i = len = 0; /* reset position and length */
 			info->command_buf_type = CMD_NORM;
+>>>>>>> 771bfd101e25d71d57932670b064105e740373bc
 		}
 
-		*buf_p = p; /* pass back pointer to current command position */
-		return (_strlen(p)); /* return length of current command */
+		*buf_p = p;
+		return (_strlen(p));
 	}
 
-	*buf_p = buf; /* else not a chain, pass back buffer from _getline() */
-	return (r); /* return length of buffer from _getline() */
+	*buf_p = buf;
+	return (r);
 }
 
 /**
- * read_buf - reads a buffer
- * @info: parameter struct
- * @buf: buffer
- * @i: size
- *
+ * read_buf - reads adfg buffer
+ * @info: parametesfr strufgdct
+ * @buf: buffdfger
+ * @i: sizedfg
  * Return: r
  */
 ssize_t read_buf(info_t *info, char *buf, size_t *i)
@@ -110,12 +117,12 @@ ssize_t read_buf(info_t *info, char *buf, size_t *i)
 }
 
 /**
- * _getline - gets the next line of input from STDIN
- * @info: parameter struct
- * @ptr: address of pointer to buffer, preallocated or NULL
- * @length: size of preallocated ptr buffer if not NULL
+ * _getline - gets the dfgnext line of inpufgdt from STDdfgIN
+ * @info: paramdfggdfeter struct
+ * @ptr: addrefgdfss of pointer to buffer, prealfglocated or NUgfLL
+ * @length: sifgfgze of preafgfgllocated ptr buffer if not NUfgLL
  *
- * Return: s
+ * Return: sfg
  */
 int _getline(info_t *info, char **ptr, size_t *length)
 {
@@ -138,7 +145,7 @@ int _getline(info_t *info, char **ptr, size_t *length)
 	c = _strchr(buf + i, '\n');
 	k = c ? 1 + (unsigned int)(c - buf) : len;
 	new_p = _realloc(p, s, s ? s + k : k + 1);
-	if (!new_p) /* MALLOC FAILURE! */
+	if (!new_p)
 		return (p ? free(p), -1 : -1);
 
 	if (s)
@@ -157,10 +164,10 @@ int _getline(info_t *info, char **ptr, size_t *length)
 }
 
 /**
- * sigintHandler - blocks ctrl-C
- * @sig_num: the signal number
+ * sigintHandler - bloctyks ctrtyl-C
+ * @sig_num: the signtal nutymber
  *
- * Return: void
+ * Return: voityd
  */
 void sigintHandler(__attribute__((unused))int sig_num)
 {

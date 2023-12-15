@@ -1,17 +1,30 @@
 #include "myShell.h"
 
 /**
+<<<<<<< HEAD
+ * _myexit - exitsds the shesdll
+ * @info: Structure contaisdning potensdsdtial argumsdents.
+ *  Ussdssdded to mainsdtain
+ *  constasdnt functsdion protsdotype.
+ *  Return: exits wisdth a givesdn exit stasdtus
+ *         (0) if infosd.argv[0] != "exit"
+=======
  * _myexit - exits the shell
  * @info: Structure containing potential arguments. Used to maintain
  *          constant function prototype.
  *  Return: exits with a given exit stts
  *         (0) if info.arntv[0] != "exit"
+>>>>>>> 771bfd101e25d71d57932670b064105e740373bc
  */
 int _myexit(info_t *info)
 {
 	int exitcheck;
 
+<<<<<<< HEAD
+	if (info->argv[1])
+=======
 	if (info->arntv[1])  /* If there is an exit arguement */
+>>>>>>> 771bfd101e25d71d57932670b064105e740373bc
 	{
 		exitcheck = _erratoi(info->arntv[1]);
 		if (exitcheck == -1)
@@ -30,10 +43,11 @@ int _myexit(info_t *info)
 }
 
 /**
- * _mycd - changes the current directory of the process
- * @info: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
- *  Return: Always 0
+ * _mycd - changes the currdfasent direcdfastory of the proadfscess
+ * @info: Strucdfture contasdfaining poteasndftial argumadfsents.
+ * Useadfdfsd to maindftain
+ * consastant funcdftasion protoadfstype.
+ *  Return: Alwadfys 0
  */
 int _mycd(info_t *info)
 {
@@ -80,10 +94,11 @@ int _mycd(info_t *info)
 }
 
 /**
- * _myhelp - changes the current directory of the process
- * @info: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
- *  Return: Always 0
+ * _myhelp - changes the currdfent direcdftory of the prodfcess
+ * @info: Structdfdfure containidfng potentidfal arguments.
+ * Useddf to dfdfdf
+ * constdfant functdfion prototydfpe.
+ *  Return: Alwadfys 0
  */
 int _myhelp(info_t *info)
 {
@@ -92,6 +107,6 @@ int _myhelp(info_t *info)
 	arg_array = info->arntv;
 	_puts("help call works. Function not yet implemented \n");
 	if (0)
-		_puts(*arg_array); /* temp att_unused workaround */
+		_puts(*arg_array);
 	return (0);
 }

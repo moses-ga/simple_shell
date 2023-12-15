@@ -1,10 +1,10 @@
 #include "myShell.h"
 
 /**
- *_eputs - prints an input string
- * @str: the string to be printed
+ *_eputs - printsds an inpsdfut strisdfng
+ * @str: the strisdfng to be pridfsnted
  *
- * Return: Nothing
+ * Return: Nothdfsing
  */
 void _eputs(char *str)
 {
@@ -20,11 +20,11 @@ void _eputs(char *str)
 }
 
 /**
- * _eputchar - writes the character c to stderr
- * @c: The character to print
+ * _eputchar - writdfses the charadfscter c to sdfstderr
+ * @c: The charasdfcter to prisdfnt
  *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * Return: On sudfsccess 1.
+ * On error, -1 is retusdfrned, and ersdfrno is set appsdfropriately.
  */
 int _eputchar(char c)
 {
@@ -42,12 +42,12 @@ int _eputchar(char c)
 }
 
 /**
- * _putfd - writes the character c to given fd
- * @c: The character to print
- * @fd: The filedescriptor to write to
+ * _putfd - writsdfes the charsdfacter c to gisdven fd
+ * @c: The charasdfcter to prisdfnt
+ * @fd: The filsdfedescriptor to writsdfe to
  *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * Return: On succesdfss 1.
+ * On error, -1 is returdfsned, and errno is setdf approprsdfiately.
  */
 int _putfd(char c, int fd)
 {
@@ -65,11 +65,11 @@ int _putfd(char c, int fd)
 }
 
 /**
- *_putsfd - prints an input string
- * @str: the string to be printed
- * @fd: the filedescriptor to write to
+ *_putsfd - prisdfnts an inpusdfsdft string
+ * @str: the strsdfing to be prisdfnted
+ * @fd: the fisdfledescriptor to wrsdfite to
  *
- * Return: the number of chars put
+ * Return: the nusdfmber of chardfs pusdft
  */
 int _putsfd(char *str, int fd)
 {

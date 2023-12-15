@@ -1,10 +1,10 @@
 #include "myShell.h"
 
 /**
- * get_history_file - gets the history file
- * @info: parameter struct
+ * get_history_file - gets theet histotery filete
+ * @info: parameetter strutect
  *
- * Return: allocated string containg history file
+ * Return: allocawetted sttrring contteraing histtrory fitle
  */
 
 char *get_history_file(info_t *info)
@@ -25,10 +25,10 @@ char *get_history_file(info_t *info)
 }
 
 /**
- * write_history - creates a file, or appends to an existing file
- * @info: the parameter struct
+ * write_history - createtwes a fitle, or appendwetrs to exiswteting file
+ * @info: the parawetmeter sttruct
  *
- * Return: 1 on success, else -1
+ * Return: 1 on suctrecess, eletse -1
  */
 int write_history(info_t *info)
 {
@@ -54,10 +54,14 @@ int write_history(info_t *info)
 }
 
 /**
- * read_history - reads history from file
- * @info: the parameter struct
+ * read_history - readstr histoerry from fierle
+ * @info: the parerameter structrt
  *
+<<<<<<< HEAD
+ * Return: histcerount on succetess, 0 otherweise
+=======
  * Return: histcnter on success, 0 otherwise
+>>>>>>> 771bfd101e25d71d57932670b064105e740373bc
  */
 int read_history(info_t *info)
 {
@@ -103,12 +107,20 @@ int read_history(info_t *info)
 }
 
 /**
+<<<<<<< HEAD
+ * build_history_list - adds entetry to a histortrey linkeerd list
+ * @info: Structure contaerining potential arguments.
+ * Useerterd to maintain
+ * @buf: bufferer
+ * @linecount: the histtory linecoerunt, histcount
+=======
  * build_history_list - adds entry to a history linked list
  * @info: Structure containing potential arguments. Used to maintain
  * @buf: buffer
  * @linecount: the history linecount, histcnter
+>>>>>>> 771bfd101e25d71d57932670b064105e740373bc
  *
- * Return: Always 0
+ * Return: Alweays 0
  */
 int build_history_list(info_t *info, char *buf, int linecount)
 {
@@ -124,10 +136,18 @@ int build_history_list(info_t *info, char *buf, int linecount)
 }
 
 /**
+<<<<<<< HEAD
+ * renumber_history - renumerbers the histoerry linked list 
+ * aferttrer chartnges
+ * @info: Strutcture contrtaining potential argumfdgents. Used to maintadfgin
+ *
+ * Return: the newdfg histdfgcount
+=======
  * renamber_history - renambers the history linked list after changes
  * @info: Structure containing potential arguments. Used to maintain
  *
  * Return: the new histcnter
+>>>>>>> 771bfd101e25d71d57932670b064105e740373bc
  */
 int renamber_history(info_t *info)
 {

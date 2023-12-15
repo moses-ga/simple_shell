@@ -1,8 +1,8 @@
 #include "myShell.h"
 
 /**
- * clear_info - initializes info_t struct
- * @info: struct address
+ * clear_info - initialdfgizes info_t stdfgruct
+ * @info: strudfgct addrefgdss
  */
 void clear_info(info_t *info)
 {
@@ -13,9 +13,15 @@ void clear_info(info_t *info)
 }
 
 /**
+<<<<<<< HEAD
+ * set_info - initidfgalizes info_t dfgstruct
+ * @info: strudfgfdgct addrefgss
+ * @av: argumendffgt vector
+=======
  * set_info - initializes info_t struct
  * @info: struct address
  * @av: arntument vector
+>>>>>>> 771bfd101e25d71d57932670b064105e740373bc
  */
 void set_info(info_t *info, char **av)
 {
@@ -45,9 +51,9 @@ void set_info(info_t *info, char **av)
 }
 
 /**
- * free_info - frees info_t struct fields
- * @info: struct address
- * @all: true if freeing all fields
+ * free_info - freedfgs info_t strudfgct fieldfds
+ * @info: stfgruct addfgdress
+ * @all: true if freedfing all fidfgelds
  */
 void free_info(info_t *info, int all)
 {

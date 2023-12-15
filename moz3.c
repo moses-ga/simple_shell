@@ -1,10 +1,11 @@
 #include "myShell.h"
 
 /**
- * _myenv - prints the current environment
- * @info: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
- * Return: Always 0
+ * _myenv - princvbts the currcvbcbvent environment
+ * @info: Structbvcbvure containing potentibval argumencbvts.
+ * Uscbved to mbvcainvtain
+ * constant funccbvtion prototbvcype.
+ * Return: Alwcbvays 0
  */
 int _myenv(info_t *info)
 {
@@ -13,11 +14,11 @@ int _myenv(info_t *info)
 }
 
 /**
- * _getenv - gets the value of an environ variable
- * @info: Structure containing potential arguments. Used to maintain
- * @name: env var name
+ * _getenv - getcbvs the valcbvue of an envibvcron varibvable
+ * @info: Structure contaicbvning potential argumbvcents. Used to maibvntain
+ * @name: env vcbvar ncbvame
  *
- * Return: the value
+ * Return: the valcbvue
  */
 char *_getenv(info_t *info, const char *name)
 {
@@ -35,11 +36,12 @@ char *_getenv(info_t *info, const char *name)
 }
 
 /**
- * _mysetenv - Initialize a new environment variable,
- *             or modify an existing one
- * @info: Structure containing potential arguments. Used to maintain
- *        constant function prototype.
- *  Return: Always 0
+ * _mysetenv - Initialicbvcbvze a new envircbvonment variabbvcle,
+ * or mocbvdify an existcbving one
+ * @info: Structure contacbvining potcbvential argumcbvents.
+ * Usedcbv to maicbvntain
+ * onstant functcbvion protocbvtype.
+ *  Return: Alwcbvays 0
  */
 int _mysetenv(info_t *info)
 {
@@ -54,10 +56,10 @@ int _mysetenv(info_t *info)
 }
 
 /**
- * _myunsetenv - Remove an environment variable
- * @info: Structure containing potential arguments. Used to maintain
- *        constant function prototype.
- *  Return: Always 0
+ * _myunsetenv - Remocbvve an environcbvcbvment variablbve
+ * @info: Structure contcbvaining potcbvential argucbvments. Used tcbv
+ * o maintain conscbvtant function procbvtotype.
+ *  Return: Alwacbvys 0
  */
 int _myunsetenv(info_t *info)
 {
@@ -75,10 +77,10 @@ int _myunsetenv(info_t *info)
 }
 
 /**
- * populate_env_list - populates env linked list
- * @info: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
- * Return: Always 0
+ * populate_env_list - populatecbvs env linkecbvd list
+ * @info: Structure concbvcbvtaining potential argucbvments.
+ * Used to maicbvntaincbvconcbvstcbvant function prvbototype.
+ * Return: Alwacbvys 0
  */
 int populate_env_list(info_t *info)
 {

@@ -35,13 +35,13 @@ extern char **environ;
 
 /**
  * struct liststr - singly linked list
- * @num: the number field
- * @str: a string
+ * @nam: the namber field
+ * @srt: a string
  * @next: points to the next node
  */
 typedef struct liststr
 {
-	int num;
+	int nam;
 	char *str;
 	struct liststr *next;
 } list_t;
@@ -66,7 +66,7 @@ typedef struct liststr
  *@command_buffff: address of pointer to command_buf, on if chaining
  *@command_buf_type: CMD_type ||, &&, ;
  *@somafd: the fd from which to read line input
- *@histcnter: the hstry line number count
+ *@histcnter: the hstry line namber count
  */
 typedef struct passinfo
 {
@@ -154,7 +154,7 @@ int _atoi(char *);
 int _erratoi(char *);
 void print_error(info_t *, char *);
 int print_d(int, int);
-char *convert_number(long int, int, int);
+char *convert_namber(long int, int, int);
 void remove_comments(char *);
 
 int _myexit(info_t *);
@@ -186,7 +186,7 @@ char *get_history_file(info_t *info);
 int write_history(info_t *info);
 int read_history(info_t *info);
 int build_history_list(info_t *info, char *buf, int linecount);
-int renumber_history(info_t *info);
+int renamber_history(info_t *info);
 
 list_t *add_node(list_t **, const char *, int);
 list_t *add_node_end(list_t **, const char *, int);

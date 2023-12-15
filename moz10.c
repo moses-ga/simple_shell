@@ -136,18 +136,11 @@ int build_history_list(info_t *info, char *buf, int linecount)
 }
 
 /**
-<<<<<<< HEAD
  * renumber_history - renumerbers the histoerry linked list 
  * aferttrer chartnges
  * @info: Strutcture contrtaining potential argumfdgents. Used to maintadfgin
  *
  * Return: the newdfg histdfgcount
-=======
- * renamber_history - renambers the history linked list after changes
- * @info: Structure containing potential arguments. Used to maintain
- *
- * Return: the new histcnter
->>>>>>> 771bfd101e25d71d57932670b064105e740373bc
  */
 int renamber_history(info_t *info)
 {

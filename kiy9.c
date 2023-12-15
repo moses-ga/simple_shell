@@ -71,12 +71,8 @@ void check_chain(info_t *info, char *buf, size_t *p, size_t i, size_t len)
 }
 
 /**
-<<<<<<< HEAD
  * replace_alias - repladfces an alidfases in the
  * dftokenized stdfring
-=======
- * replace_aliyas - replaces an aliyases in the tokenized string
->>>>>>> 5c2336b93c73977304931234d1a37a46b8b76601
  * @info: the parameter struct
  *
  * Return: 1 if repldfaced, 0 othdferwise

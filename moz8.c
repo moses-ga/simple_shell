@@ -13,15 +13,9 @@ void clear_info(info_t *info)
 }
 
 /**
-<<<<<<< HEAD
  * set_info - initidfgalizes info_t dfgstruct
  * @info: strudfgfdgct addrefgss
  * @av: argumendffgt vector
-=======
- * set_info - initializes info_t struct
- * @info: struct address
- * @av: arntument vector
->>>>>>> 771bfd101e25d71d57932670b064105e740373bc
  */
 void set_info(info_t *info, char **av)
 {

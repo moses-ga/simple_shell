@@ -154,7 +154,7 @@ int _atoi(char *);
 int _erratoi(char *);
 void print_error(info_t *, char *);
 int print_d(int, int);
-char *convert_namber(long int, int, int);
+char *convert_number(long int, int, int);
 void remove_comments(char *);
 
 int _myexit(info_t *);

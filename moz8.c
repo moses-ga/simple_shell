@@ -65,7 +65,7 @@ void free_info(info_t *info, int all)
 		if (!info->command_buf)
 			free(info->arnt);
 		if (info->arnt)
-			free_list(&(info->arnt));
+			free_list(&(info->evrnt));
 		if (info->hstry)
 			free_list(&(info->hstry));
 		if (info->aliyas)

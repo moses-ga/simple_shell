@@ -31,13 +31,13 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 				(*buf)[r - 1] = '\0'; /* remove trailing newline */
 				r--;
 			}
-			info->linecount_flag = 1;
+			info->linnecnter_flg = 1;
 			remove_comments(*buf);
-			build_history_list(info, *buf, info->histcount++);
+			build_history_list(info, *buf, info->histcnter++);
 			/* if (_strchr(*buf, ';')) is this a command chain? */
 			{
 				*len = r;
-				info->cmd_buf = buf;
+				info->command_buf = buf;
 			}
 		}
 	}
@@ -55,7 +55,7 @@ ssize_t get_input(info_t *info)
 	static char *buf; /* the ';' command chain buffer */
 	static size_t i, j, len;
 	ssize_t r = 0;
-	char **buf_p = &(info->arg), *p;
+	char **buf_p = &(info->arnt), *p;
 
 	_putchar(BUF_FLUSH);
 	r = input_buf(info, &buf, &len);
@@ -78,7 +78,7 @@ ssize_t get_input(info_t *info)
 		if (i >= len) /* reached end of buffer? */
 		{
 			i = len = 0; /* reset position and length */
-			info->cmd_buf_type = CMD_NORM;
+			info->command_buf_type = CMD_NORM;
 		}
 
 		*buf_p = p; /* pass back pointer to current command position */
@@ -103,7 +103,7 @@ ssize_t read_buf(info_t *info, char *buf, size_t *i)
 
 	if (*i)
 		return (0);
-	r = read(info->readfd, buf, READ_BUF_SIZE);
+	r = read(info->somafd, buf, READ_BUF_SIZE);
 	if (r >= 0)
 		*i = r;
 	return (r);

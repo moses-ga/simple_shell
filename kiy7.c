@@ -1,11 +1,11 @@
 #include "myShell.h"
 
 /**
- * _strcpy - copies a string
- * @dest: the destination
- * @src: the source
+ * _strcpy - copiessss a stringggg
+ * @dest: the destinationgfbkd
+ * @src: theffg sofgfurce
  *
- * Return: pointer to destination
+ * Return: pointtert to dtrestinrtation
  */
 char *_strcpy(char *dest, char *src)
 {
@@ -23,10 +23,10 @@ char *_strcpy(char *dest, char *src)
 }
 
 /**
- * _strdup - duplicates a string
- * @str: the string to duplicate
+ * _strdup - duppplicartecates a sstritring
+ * @str: the ststringring to duplpuvlicate
  *
- * Return: pointer to the duplicated string
+ * Return: poinrtter to the duplrticated strtring
  */
 char *_strdup(const char *str)
 {
@@ -46,10 +46,10 @@ char *_strdup(const char *str)
 }
 
 /**
- *_puts - prints an input string
- *@str: the string to be printed
+ *_puts - printrts an inpurtt stritrng
+ *@str: the rtstring to rbe prirtnted
  *
- * Return: Nothing
+ * Return: Nothingnothing
  */
 void _puts(char *str)
 {
@@ -65,11 +65,12 @@ void _puts(char *str)
 }
 
 /**
- * _putchar - writes the character c to stdout
- * @c: The character to print
+ * _putchar - writrtes the chartracter c to strtdout
+ * @c: The charactrter to prrtint
  *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * Return: On suctrcess 1.
+ * On error, -1 is returtrtrned, and errno is set
+ * apprtroprtriately.
  */
 int _putchar(char c)
 {

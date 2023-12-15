@@ -1,10 +1,10 @@
 #include "myShell.h"
 
 /**
- * bfree - frees a pointer and NULLs the address
- * @ptr: address of the pointer to free
+ * bfree - fretrrtes a poinrtter and NtrULLs the trtr
+ * @ptr: addrtress of ttrhe pointrter to frete
  *
- * Return: 1 if freed, otherwise 0.
+ * Return: 1 if fretred, otherwtrise 0.
  */
 int bfree(void **ptr)
 {

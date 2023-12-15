@@ -1,10 +1,10 @@
 #include "myShell.h"
 
 /**
- * list_len - determines length of linked list
- * @h: pointer to first node
+ * list_len - detedsrmines ledsngth of linsdked list
+ * @h: poindster tods firdsst node
  *
- * Return: size of list
+ * Return: sidsze ofds sdlist
  */
 size_t list_len(const list_t *h)
 {
@@ -19,10 +19,11 @@ size_t list_len(const list_t *h)
 }
 
 /**
- * list_to_strings - returns an array of strings of the list->str
- * @head: pointer to first node
+ * list_to_strings - returnssddsdsdsds an array of strings
+ * ds of tdshe list-sd>str
+ * @head: pointdser to firdsst nodsde
  *
- * Return: array of strings
+ * Return: arrtray trof strtrings
  */
 char **list_to_strings(list_t *head)
 {
@@ -56,10 +57,11 @@ char **list_to_strings(list_t *head)
 
 
 /**
- * print_list - prints all elements of a list_t linked list
- * @h: pointer to first node
+ * print_list - printfdfds alfdfl elementsfd of a list_fdt
+ * linkdfed lifdst
+ * @h: poidfnter tofd fifdrst nofde
  *
- * Return: size of list
+ * Return: sidfze ofdf lfdist
  */
 size_t print_list(const list_t *h)
 {
@@ -79,12 +81,13 @@ size_t print_list(const list_t *h)
 }
 
 /**
- * node_starts_with - returns node whose string starts with prefix
- * @node: pointer to list head
- * @prefix: string to match
- * @c: the next character after prefix to match
+ * node_starts_with - retufdrns noddfdfe whosedfdf strin
+ * fddffddfg stdfarts with predffix
+ * @node: pointdfer to lisfdt hefdad
+ * @prefix: strinfdg to madftch
+ * @c: the nedfxt charadffdcter after pfdrefixfd to match
  *
- * Return: match node or null
+ * Return: matdfch nofdde orfd dfnull
  */
 list_t *node_starts_with(list_t *node, char *prefix, char c)
 {
@@ -101,11 +104,11 @@ list_t *node_starts_with(list_t *node, char *prefix, char c)
 }
 
 /**
- * get_node_index - gets the index of a node
- * @head: pointer to list head
- * @node: pointer to the node
+ * get_node_index - gedffdts the indexfd of a nofdde
+ * @head: poinfdter to fdlist hfdead
+ * @node: pointfder to thfdfde nofdde
  *
- * Return: index of node or -1
+ * Return: indefdx of nodfde orfd -1
  */
 ssize_t get_node_index(list_t *head, list_t *node)
 {

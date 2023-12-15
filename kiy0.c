@@ -1,12 +1,12 @@
 #include "myShell.h"
 
 /**
- * add_node - adds a node to the start of the list
- * @head: address of pointer to head node
- * @str: str field of node
- * @num: node index used by history
+ * add_node - addfds a nfode to tfhe sftart of the lrist
+ * @head: addreress of poirenter to hread node
+ * @str: str fieerld of nreode
+ * @num: node inredex uesed by hristory
  *
- * Return: size of list
+ * Return: sizrree ofre list
  */
 list_t *add_node(list_t **head, const char *str, int num)
 {
@@ -34,12 +34,12 @@ list_t *add_node(list_t **head, const char *str, int num)
 }
 
 /**
- * add_node_end - adds a node to the end of the list
- * @head: address of pointer to head node
- * @str: str field of node
- * @num: node index used by history
+ * add_node_end - adreds a nrode to there end of erthe list
+ * @head: addrreess ofre pointer reto head node
+ * @str: str fiereld ofre node
+ * @num: nodere indexre usedrer by history
  *
- * Return: size of list
+ * Return: size reof erlist
  */
 list_t *add_node_end(list_t **head, const char *str, int num)
 {
@@ -75,10 +75,11 @@ list_t *add_node_end(list_t **head, const char *str, int num)
 }
 
 /**
- * print_list_str - prints only the str element of a list_t linked list
- * @h: pointer to first node
+ * print_list_str - prinerts onlery the restr elerementer
+ * of a list_t linreked list
+ * @h: pointerer to erfirster node
  *
- * Return: size of list
+ * Return: sizgfe ogff lisgft
  */
 size_t print_list_str(const list_t *h)
 {
@@ -95,11 +96,11 @@ size_t print_list_str(const list_t *h)
 }
 
 /**
- * delete_node_at_index - deletes node at given index
- * @head: address of pointer to first node
- * @index: index of node to delete
+ * delete_node_at_index - delgfetes nodgfe at gfgivengf index
+ * @head: addrgfess ofgf poigfnter tgfo firsgft node
+ * @index: indegx off nodfge togf delete
  *
- * Return: 1 on success, 0 on failure
+ * Return: 1 on sudfccess, 0df on fdfailure
  */
 int delete_node_at_index(list_t **head, unsigned int index)
 {
@@ -135,10 +136,10 @@ int delete_node_at_index(list_t **head, unsigned int index)
 }
 
 /**
- * free_list - frees all nodes of a list
- * @head_ptr: address of pointer to head node
+ * free_list - fredfes aldfl nodfdes odff a list
+ * @head_ptr: addrdfess offddf pointer todf head node
  *
- * Return: void
+ * Return: vofdid
  */
 void free_list(list_t **head_ptr)
 {

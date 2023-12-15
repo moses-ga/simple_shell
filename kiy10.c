@@ -1,11 +1,11 @@
 #include "myShell.h"
 
 /**
- * is_cmd - determines if a file is an executable command
- * @info: the info struct
+ * is_cmd - detersdmines if a fildse is an executadsdsble command
+ * @info: the ifdnfo strucdffdt
  * @path: path to the file
  *
- * Return: 1 if true, 0 otherwise
+ * Return: 1 if true, 0 othfggerwise
  */
 int is_cmd(info_t *info, char *path)
 {

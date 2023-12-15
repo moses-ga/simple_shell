@@ -1,10 +1,12 @@
 #include "myShell.h"
 
 /**
- * **strtow - splits a string into words. Repeat delimiters are ignored
- * @str: the input string
- * @d: the delimeter string
- * Return: a pointer to an array of strings, or NULL on failure
+ * **strtow - splirtts a strrting into wordtrs. Reptreat
+ * delimtriters are ignrtored
+ * @str: the intrput strtring
+ * @d: the deltrimeter stritrng
+ * Return: a pointrtrter to an array of strings,
+ * r NUtrLL otrn faitrrtlure
  */
 
 char **strtow(char *str, char *d)
@@ -49,10 +51,10 @@ char **strtow(char *str, char *d)
 }
 
 /**
- * **strtow2 - splits a string into words
- * @str: the input string
- * @d: the delimeter
- * Return: a pointer to an array of strings, or NULL on failure
+ * **strtow2 - spltrtrits a string intotrtr words
+ * @str: the itrnput strtring
+ * @d: the deltrimeter
+ * Return: a poitrnter to an trarray of sttrtrrings, or NULL on failure
  */
 char **strtow2(char *str, char d)
 {

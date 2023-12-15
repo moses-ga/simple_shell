@@ -1,11 +1,11 @@
 #include "myShell.h"
 
 /**
- * main - entry point
- * @ac: arg count
- * @av: arg vector
+ * main - our entry function entry point
+ * @ac: arguments count
+ * @av: arguments vector
  *
- * Return: 0 on success, 1 on error
+ * Return: 0 on success, 1 otherwise
  */
 int main(int ac, char **av)
 {

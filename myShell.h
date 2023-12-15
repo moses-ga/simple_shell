@@ -159,6 +159,7 @@ void remove_comments(char *);
 
 int _myexit(info_t *);
 int _mycd(info_t *);
+int _mycd(info_t *info);
 int _myhelp(info_t *);
 
 int _myhistory(info_t *);
@@ -175,6 +176,7 @@ void free_info(info_t *, int);
 char *_getenv(info_t *, const char *);
 int _myenv(info_t *);
 int _mysetenv(info_t *);
+int _mysetenv(info_t *info);
 int _myunsetenv(info_t *);
 int populate_env_list(info_t *);
 

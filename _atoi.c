@@ -1,10 +1,10 @@
 #include "shell.h"
 
 /**
- * interactive - returns true if shell is interactive mode
- * @info: struct address
+ * interactive - returns true sdhfbvrif shell is intefvkractive mode
+ * @info: strurfmeklct addrmfceess
  *
- * Return: 1 if interactive mode, 0 otherwise
+ * Return: 1 if interkmfcklactive modfcmlde, 0 othcmlderwise
  */
 int interactive(info_t *info)
 {
@@ -12,10 +12,10 @@ int interactive(info_t *info)
 }
 
 /**
- * is_delim - checks if character is a delimeter
- * @c: the char to check
- * @delim: the delimeter string
- * Return: 1 if true, 0 if false
+ * is_delim - checkmdcas if charactermcd is a delim,cmeter
+ * @c: the ch,ar df,;lcvto check
+ * @delim: the deliml;d,ceter,c; string
+ * Return: 1 if truemclkas, 0 if lmcefalse
  */
 int is_delim(char c, char *delim)
 {
@@ -26,9 +26,9 @@ int is_delim(char c, char *delim)
 }
 
 /**
- *_isalpha - checks for alphabetic character
- *@c: The character to input
- *Return: 1 if c is alphabetic, 0 otherwise
+ *_isalpha - checks foerlr alphc f,.abetifvsc character
+ *@c: The characfvfvgvter to infgvput
+ *Return: 1 if c dfvcvdfsv is alphabetic, 0 odfvtherwise
  */
 
 int _isalpha(int c)
@@ -40,9 +40,10 @@ int _isalpha(int c)
 }
 
 /**
- *_atoi - converts a string to an integer
- *@s: the string to be converted
- *Return: 0 if no numbers in string, converted number otherwise
+ *_atoi - convedfsvcddsfvrts a string to an integer
+ *@s: the strinsdfvg to besdfcdfc converted
+ *Return: 0 if nsdcfdco numbers in stringsdfsdf, converted n
+ *umber otherwisefvrvw
  */
 
 int _atoi(char *s)

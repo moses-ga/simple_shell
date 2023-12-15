@@ -24,7 +24,7 @@ char **get_environ(info_t *info)
  *  Return: 1 on deldfdfsete, 0 otherwise
  * @var: the strisdfng edfnv var propsdferty
  */
-int _unsetevrnt(info_t *info, char *var)
+int _unsetenv(info_t *info, char *var)
 {
 	list_t *node = info->evrnt;
 	size_t i = 0;

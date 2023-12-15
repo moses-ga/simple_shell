@@ -59,7 +59,7 @@ int find_builtin(info_t *info)
 		{"exit", _myexit},
 		{"env", _myenv},
 		{"help", _myhelp},
-		{"history", _myhistory},
+		{"history", _myhistroy},
 		{"setenv", _mysetenv},
 		{"unsetenv", _myunsetenv},
 		{"cd", _mycd},
@@ -152,7 +152,7 @@ void fork_cmd(info_t *info)
 		wait(&(info->stts));
 		if (WIFEXITED(info->stts))
 		{
-			info->stts = WEXITSTTS(info->stts);
+			info->stts = WEXITSTATUS(info->stts);
 			if (info->stts == 126)
 				print_error(info, "Permission denied\n");
 		}

@@ -1,9 +1,15 @@
 #include "myShell.h"
 
 /**
+<<<<<<< HEAD
  * hsh - masdin sheldssdl loop
  * @info: the parsdameter & dsds info struct
  * @av: the argdsument vectdsor from dsmain()
+=======
+ * hsh - main shell loop
+ * @info: the parameter & return info struct
+ * @av: the arntument vector from main()
+>>>>>>> 5c2336b93c73977304931234d1a37a46b8b76601
  *
  * Return: 0 odsn successds, 1 on error,ds or error code
  */
@@ -32,13 +38,13 @@ int hsh(info_t *info, char **av)
 	}
 	write_history(info);
 	free_info(info, 1);
-	if (!interactive(info) && info->status)
-		exit(info->status);
+	if (!interactive(info) && info->stts)
+		exit(info->stts);
 	if (builtin_ret == -2)
 	{
-		if (info->err_num == -1)
-			exit(info->status);
-		exit(info->err_num);
+		if (info->erro_nam == -1)
+			exit(info->stts);
+		exit(info->erro_nam);
 	}
 	return (builtin_ret);
 }
@@ -59,7 +65,7 @@ int find_builtin(info_t *info)
 		{"exit", _myexit},
 		{"env", _myenv},
 		{"help", _myhelp},
-		{"history", _myhistory},
+		{"history", _myhistroy},
 		{"setenv", _mysetenv},
 		{"unsetenv", _myunsetenv},
 		{"cd", _mycd},
@@ -68,9 +74,9 @@ int find_builtin(info_t *info)
 	};
 
 	for (i = 0; builtintbl[i].type; i++)
-		if (_strcmp(info->argv[0], builtintbl[i].type) == 0)
+		if (_strcmp(info->arntv[0], builtintbl[i].type) == 0)
 		{
-			info->line_count++;
+			info->linne_counter++;
 			built_in_ret = builtintbl[i].func(info);
 			break;
 		}
@@ -88,19 +94,19 @@ void find_cmd(info_t *info)
 	char *path = NULL;
 	int i, k;
 
-	info->path = info->argv[0];
-	if (info->linecount_flag == 1)
+	info->path = info->arntv[0];
+	if (info->linnecnter_flg == 1)
 	{
-		info->line_count++;
-		info->linecount_flag = 0;
+		info->linne_counter++;
+		info->linnecnter_flg = 0;
 	}
-	for (i = 0, k = 0; info->arg[i]; i++)
-		if (!is_delim(info->arg[i], " \t\n"))
+	for (i = 0, k = 0; info->arnt[i]; i++)
+		if (!is_delim(info->arnt[i], " \t\n"))
 			k++;
 	if (!k)
 		return;
 
-	path = find_path(info, _getenv(info, "PATH="), info->argv[0]);
+	path = find_path(info, _getenv(info, "PATH="), info->arntv[0]);
 	if (path)
 	{
 		info->path = path;
@@ -109,11 +115,11 @@ void find_cmd(info_t *info)
 	else
 	{
 		if ((interactive(info) || _getenv(info, "PATH=")
-			|| info->argv[0][0] == '/') && is_cmd(info, info->argv[0]))
+			|| info->arntv[0][0] == '/') && is_cmd(info, info->arntv[0]))
 			fork_cmd(info);
-		else if (*(info->arg) != '\n')
+		else if (*(info->arnt) != '\n')
 		{
-			info->status = 127;
+			info->stts = 127;
 			print_error(info, "not found\n");
 		}
 	}
@@ -137,7 +143,7 @@ void fork_cmd(info_t *info)
 	}
 	if (child_pid == 0)
 	{
-		if (execve(info->path, info->argv, get_environ(info)) == -1)
+		if (execve(info->path, info->arntv, get_environ(info)) == -1)
 		{
 			free_info(info, 1);
 			if (errno == EACCES)
@@ -147,11 +153,11 @@ void fork_cmd(info_t *info)
 	}
 	else
 	{
-		wait(&(info->status));
-		if (WIFEXITED(info->status))
+		wait(&(info->stts));
+		if (WIFEXITED(info->stts))
 		{
-			info->status = WEXITSTATUS(info->status);
-			if (info->status == 126)
+			info->stts = WEXITSTATUS(info->stts);
+			if (info->stts == 126)
 				print_error(info, "Permission denied\n");
 		}
 	}

@@ -9,25 +9,30 @@
  */
 char *_memset(char *s, char b, unsigned int n)
 {
-	unsigned int i;
+	unsigned int moses;
 
-	for (i = 0; i < n; i++)
-		s[i] = b;
+	for (moses = 0; moses < n; moses++)
+		s[moses] = b;
 	return (s);
 }
 
 /**
+<<<<<<< HEAD
  * ffree - frerees a strreing of strerings
  * @pp: strireng of strreings
+=======
+ * ffree - frees a string of strings
+ * @pi: string of strings
+>>>>>>> 5c2336b93c73977304931234d1a37a46b8b76601
  */
-void ffree(char **pp)
+void ffree(char **pi)
 {
-	char **a = pp;
+	char **a = pi;
 
-	if (!pp)
+	if (!pi)
 		return;
-	while (*pp)
-		free(*pp++);
+	while (*pi)
+		free(*pi++);
 	free(a);
 }
 

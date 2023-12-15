@@ -1,18 +1,23 @@
 #include "myShell.h"
 
 /**
+<<<<<<< HEAD
  * list_len - detedsrmines ledsngth of linsdked list
  * @h: poindster tods firdsst node
+=======
+ * list_len - determines length of linked list
+ * @holly: pointer to first node
+>>>>>>> 5c2336b93c73977304931234d1a37a46b8b76601
  *
  * Return: sidsze ofds sdlist
  */
-size_t list_len(const list_t *h)
+size_t list_len(const list_t *holly)
 {
 	size_t i = 0;
 
-	while (h)
+	while (holly)
 	{
-		h = h->next;
+		holly = holly->next;
 		i++;
 	}
 	return (i);
@@ -28,30 +33,30 @@ size_t list_len(const list_t *h)
 char **list_to_strings(list_t *head)
 {
 	list_t *node = head;
-	size_t i = list_len(head), j;
+	size_t index = list_len(head), j;
 	char **strs;
 	char *str;
 
-	if (!head || !i)
+	if (!head || !index)
 		return (NULL);
-	strs = malloc(sizeof(char *) * (i + 1));
+	strs = malloc(sizeof(char *) * (index + 1));
 	if (!strs)
 		return (NULL);
-	for (i = 0; node; node = node->next, i++)
+	for (index = 0; node; node = node->next, index++)
 	{
 		str = malloc(_strlen(node->str) + 1);
 		if (!str)
 		{
-			for (j = 0; j < i; j++)
+			for (j = 0; j < index; j++)
 				free(strs[j]);
 			free(strs);
 			return (NULL);
 		}
 
 		str = _strcpy(str, node->str);
-		strs[i] = str;
+		strs[index] = str;
 	}
-	strs[i] = NULL;
+	strs[index] = NULL;
 	return (strs);
 }
 
@@ -69,7 +74,7 @@ size_t print_list(const list_t *h)
 
 	while (h)
 	{
-		_puts(convert_number(h->num, 10, 0));
+		_puts(convert_namber(h->nam, 10, 0));
 		_putchar(':');
 		_putchar(' ');
 		_puts(h->str ? h->str : "(nil)");

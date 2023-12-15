@@ -1,13 +1,19 @@
 #include "myShell.h"
 
 /**
+<<<<<<< HEAD
  * main - our entry function entry point
  * @ac: arguments count
  * @av: arguments vector
+=======
+ * main - entry point
+ * @agc: arg count
+ * @agv: arg vector
+>>>>>>> 5c2336b93c73977304931234d1a37a46b8b76601
  *
  * Return: 0 on success, 1 otherwise
  */
-int main(int ac, char **av)
+int main(int agc, char **agv)
 {
 	info_t info[] = { INFO_INIT };
 	int fd = 2;
@@ -17,28 +23,28 @@ int main(int ac, char **av)
 		: "=r" (fd)
 		: "r" (fd));
 
-	if (ac == 2)
+	if (agc == 2)
 	{
-		fd = open(av[1], O_RDONLY);
+		fd = open(agv[1], O_RDONLY);
 		if (fd == -1)
 		{
 			if (errno == EACCES)
 				exit(126);
 			if (errno == ENOENT)
 			{
-				_eputs(av[0]);
+				_eputs(agv[0]);
 				_eputs(": 0: Can't open ");
-				_eputs(av[1]);
+				_eputs(agv[1]);
 				_eputchar('\n');
 				_eputchar(BUF_FLUSH);
 				exit(127);
 			}
 			return (EXIT_FAILURE);
 		}
-		info->readfd = fd;
+		info->somafd = fd;
 	}
 	populate_env_list(info);
 	read_history(info);
-	hsh(info, av);
+	hsh(info, agv);
 	return (EXIT_SUCCESS);
 }

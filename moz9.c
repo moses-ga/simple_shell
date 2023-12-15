@@ -32,12 +32,7 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 			}
 			info->linnecnter_flg = 1;
 			remove_comments(*buf);
-<<<<<<< HEAD
 			build_history_list(info, *buf, info->histcount++);
-=======
-			build_history_list(info, *buf, info->histcnter++);
-			/* if (_strchr(*buf, ';')) is this a command chain? */
->>>>>>> 771bfd101e25d71d57932670b064105e740373bc
 			{
 				*len = r;
 				info->command_buf = buf;
@@ -80,13 +75,8 @@ ssize_t get_input(info_t *info)
 		i = j + 1;
 		if (i >= len)
 		{
-<<<<<<< HEAD
 			i = len = 0;
-			info->cmd_buf_type = CMD_NORM;
-=======
-			i = len = 0; /* reset position and length */
 			info->command_buf_type = CMD_NORM;
->>>>>>> 771bfd101e25d71d57932670b064105e740373bc
 		}
 
 		*buf_p = p;

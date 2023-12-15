@@ -13,13 +13,8 @@ int _erratoi(char *s)
 	unsigned long int result = 0;
 
 	if (*s == '+')
-<<<<<<< HEAD
 		s++; 
 	for (i = 0;  s[i] != '\0'; i++)
-=======
-		s++;  /* TODO: why does this make main return 255? */
-	for (inde = 0;  s[i] != '\0'; inde++)
->>>>>>> 771bfd101e25d71d57932670b064105e740373bc
 	{
 		if (s[inde] >= '0' && s[inde] <= '9')
 		{

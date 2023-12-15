@@ -1,30 +1,18 @@
 #include "myShell.h"
 
 /**
-<<<<<<< HEAD
  * _myexit - exitsds the shesdll
  * @info: Structure contaisdning potensdsdtial argumsdents.
  *  Ussdssdded to mainsdtain
  *  constasdnt functsdion protsdotype.
  *  Return: exits wisdth a givesdn exit stasdtus
  *         (0) if infosd.argv[0] != "exit"
-=======
- * _myexit - exits the shell
- * @info: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
- *  Return: exits with a given exit stts
- *         (0) if info.arntv[0] != "exit"
->>>>>>> 771bfd101e25d71d57932670b064105e740373bc
  */
 int _myexit(info_t *info)
 {
 	int exitcheck;
 
-<<<<<<< HEAD
 	if (info->argv[1])
-=======
-	if (info->arntv[1])  /* If there is an exit arguement */
->>>>>>> 771bfd101e25d71d57932670b064105e740373bc
 	{
 		exitcheck = _erratoi(info->arntv[1]);
 		if (exitcheck == -1)
@@ -61,7 +49,7 @@ int _mycd(info_t *info)
 	{
 		dir = _getenv(info, "HOME=");
 		if (!dir)
-			chdir_ret = /* TODO: what should this be? */
+			chdir_ret =
 				chdir((dir = _getenv(info, "PWD=")) ? dir : "/");
 		else
 			chdir_ret = chdir(dir);
@@ -75,7 +63,7 @@ int _mycd(info_t *info)
 			return (1);
 		}
 		_puts(_getenv(info, "OLDPWD=")), _putchar('\n');
-		chdir_ret = /* TODO: what should this be? */
+		chdir_ret =
 			chdir((dir = _getenv(info, "OLDPWD=")) ? dir : "/");
 	}
 	else

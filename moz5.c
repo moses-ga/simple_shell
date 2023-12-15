@@ -8,17 +8,17 @@
  */
 int _erratoi(char *s)
 {
-	int i = 0;
+	int inde = 0;
 	unsigned long int result = 0;
 
 	if (*s == '+')
 		s++;  /* TODO: why does this make main return 255? */
-	for (i = 0;  s[i] != '\0'; i++)
+	for (inde = 0;  s[i] != '\0'; inde++)
 	{
-		if (s[i] >= '0' && s[i] <= '9')
+		if (s[inde] >= '0' && s[inde] <= '9')
 		{
 			result *= 10;
-			result += (s[i] - '0');
+			result += (s[inde] - '0');
 			if (result > INT_MAX)
 				return (-1);
 		}
@@ -37,11 +37,11 @@ int _erratoi(char *s)
  */
 void print_error(info_t *info, char *estr)
 {
-	_eputs(info->fname);
+	_eputs(info->filname);
 	_eputs(": ");
-	print_d(info->line_count, STDERR_FILENO);
+	print_d(info->linne_counter, STDERR_FILENO);
 	_eputs(": ");
-	_eputs(info->argv[0]);
+	_eputs(info->arntv[0]);
 	_eputs(": ");
 	_eputs(estr);
 }

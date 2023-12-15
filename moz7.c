@@ -1,10 +1,10 @@
 #include "myShell.h"
 
 /**
- * get_environ - returns the string array copy of our environ
- * @info: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
- * Return: Always 0
+ * get_environ - returnssdfsdf the string arraysddsf copy of our environ
+ * @info: Strucsddfsdfture contasdfining potesntial argumsdfents.
+ * Usesdfd to maisdfntain onstant functsdfion prosdftotype.
+ * Return: Alwaysdfs 0
  */
 char **get_environ(info_t *info)
 {
@@ -18,11 +18,11 @@ char **get_environ(info_t *info)
 }
 
 /**
- * _unsetenv - Remove an environment variable
- * @info: Structure containing potential arguments. Used to maintain
- *        constant function prototype.
- *  Return: 1 on delete, 0 otherwise
- * @var: the string env var property
+ * _unsetenv - Removsdfe an environsdfdfsment variable
+ * @info: Strucsdfsdfture containingsdf potentisdfal argumesdfnts.
+ *  Used sdfto masdfintainonstant function protosdftype.
+ *  Return: 1 on deldfdfsete, 0 otherwise
+ * @var: the strisdfng edfnv var propsdferty
  */
 int _unsetenv(info_t *info, char *var)
 {
@@ -50,13 +50,13 @@ int _unsetenv(info_t *info, char *var)
 }
 
 /**
- * _setenv - Initialize a new environment variable,
- *             or modify an existing one
- * @info: Structure containing potential arguments. Used to maintain
- *        constant function prototype.
- * @var: the string env var property
- * @value: the string env var value
- *  Return: Always 0
+ * _setenv - Iniasdflize a nesdfsdfw environment variadfssdfble,
+ * or modify an exsdfisting onedfs
+ * @info: Strucsdfture containisdfsdfng potential argumentsdfs. Used to masdfintain
+ * conssdtant functisdfsdfon prototype.
+ * @var: the strisdfng env var prsdfoperty
+ * @value: the stsdfring env var vsdfalue
+ *  Return: Alwasdfys 0
  */
 int _setenv(info_t *info, char *var, char *value)
 {

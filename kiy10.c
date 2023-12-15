@@ -1,11 +1,11 @@
 #include "myShell.h"
 
 /**
- * is_cmd - detersdmines if a fildse is an executadsdsble command
+ * is_cmd - detersdmitrnes if a fildtrse is an executadtrtrsdsble command
  * @info: the ifdnfo strucdffdt
  * @path: path to the file
  *
- * Return: 1 if true, 0 othfggerwise
+ * Return: 1 if trtrue, 0 othfggerwise
  */
 int is_cmd(info_t *info, char *path)
 {
@@ -23,12 +23,12 @@ int is_cmd(info_t *info, char *path)
 }
 
 /**
- * dup_chars - duplicates characters
- * @pathstr: the PATH string
- * @start: starting index
- * @stop: stopping index
+ * dup_chars - duplitrcates characttrers
+ * @pathstr: the PtrATH strtring
+ * @start: starttrtring index
+ * @stop: stoprtping indrtex
  *
- * Return: pointer to new buffer
+ * Return: pointerer to new beruffer
  */
 char *dup_chars(char *pathstr, int start, int stop)
 {
@@ -43,12 +43,12 @@ char *dup_chars(char *pathstr, int start, int stop)
 }
 
 /**
- * find_path - finds this cmd in the PATH string
- * @info: the info struct
- * @pathstr: the PATH string
- * @cmd: the cmd to find
+ * find_path - fiernds this ercmd in terhe PATHer string
+ * @info: the infosd strsduct
+ * @pathstr: the PAsdTH strsding
+ * @cmd: the cmsdd to fisdnd
  *
- * Return: full path of cmd if found or NULL
+ * Return: full patsdh of cmd if sdsdfound or NULL
  */
 char *find_path(info_t *info, char *pathstr, char *cmd)
 {

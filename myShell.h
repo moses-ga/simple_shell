@@ -47,26 +47,26 @@ typedef struct liststr
 } list_t;
 
 /**
- *struct passinfo - contains pseudo-arntuements to pass into a function,
- *		allowing uniform prototype for function pointer struct
- *@arnt: a string generated from getline containing arntuements
- *@arntv: an array of strings generated from arnt
- *@path: a string path for the current command
- *@arntc: the arntument count
- *@linne_counter: the error count
+ *struct passinfo - contains pseuerdo-arntutreements to pasdfs into a funcdfgtion,
+ *allowing unidfgform prototdfgype for funcdftion poidfgnter strdfguct
+ *@arnt: a strindfgg generdfgated from getldfgine containdfging arntdfguements
+ *@arntv: an ardfgray of strdfgings generadfgted from ardfgnt
+ *@path: a stridfgng patdfgh for the curdfgrent comdfgmand
+ *@arntc: the arntdfgument coudfgnt
+ *@linne_counter: the erdfgror coudfgnt
  *@erro_nam: the error code for exit()s
- *@linnecnter_flg: if on count this line of input
- *@filname: the program filename
- *@evrnt: linked list local copy of evrntiron
- *@evrntiron: custom modified copy of evrntiron from LL evrnt
- *@hstry: the hstry node
- *@aliyas: the aliyas node
- *@evrnt_changed: on if evrntiron was changed
- *@stts: the return stts of the last exec'd command
- *@command_buffff: address of pointer to command_buf, on if chaining
- *@command_buf_type: CMD_type ||, &&, ;
- *@somafd: the fd from which to read line input
- *@histcnter: the hstry line namber count
+ *@linnecnter_flg: if on codfgunt this line dfgof input
+ *@filname: the programdfg fildfgename
+ *@evrnt: linked list ldfgocal copy of evrntdfgiron
+ *@evrntiron: custom modifidfged copy of evrntidfgron from LL evdfgrnt
+ *@hstry: the hstrdfgy nodfgde
+ *@aliyas: the adfgliyas node
+ *@evrnt_changed: on if edfgvrntiron was chandfgged
+ *@stts: the return sttsdfg of the ldfgdfgast exec'd codfgmmand
+ *@command_buffff: addredfgss of pointerdfg to commandfgd_buf, on if chaifgdning
+ *@command_buf_type: CMDdfg_type ||, &dfg&, ;
+ *@somafd: the fd frdfgom whidfgch to read linedfg inpdfgut
+ *@histcnter: the hsdfgtry line ndfgamber coundfgt
  */
 typedef struct passinfo
 {
@@ -85,8 +85,8 @@ typedef struct passinfo
 	int evrnt_changed;
 	int stts;
 
-	char **command_buf; /* pointer to cmd ; chain buffer, for memory mangement */
-	int command_buf_type; /* CMD_type ||, &&, ; */
+	char **command_buf;
+	int command_buf_type;
 	int somafd;
 	int histcnter;
 } info_t;
@@ -96,9 +96,9 @@ typedef struct passinfo
 	0, 0, 0}
 
 /**
- *struct builtin - contains a builtin string and related function
- *@type: the builtin command flag
- *@func: the function
+ *struct builtin - contasdfins a builtsdfin string and relasdfted funsdfction
+ *@type: the buisdfltin commsdfand flag
+ *@func: the functsdfion
  */
 typedef struct builtin
 {

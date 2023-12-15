@@ -1,11 +1,11 @@
 #include "myShell.h"
 
 /**
- **_strncpy - copies a string
- *@dest: the destination string to be copied to
- *@src: the source string
- *@n: the amount of characters to be copied
- *Return: the concatenated string
+ **_strncpy - copiessdf a strinsdfg
+ *@dest: the destisdfnation string to be sdfcopied to
+ *@src: the sousdfdfrce strsdfing
+ *@n: the amosdfsdfunt of characters to be copiedfsd
+ *Return: the concsdfatenated strisdfng
  */
 char *_strncpy(char *dest, char *src, int n)
 {
@@ -31,11 +31,11 @@ char *_strncpy(char *dest, char *src, int n)
 }
 
 /**
- **_strncat - concatenates two strings
- *@dest: the first string
- *@src: the second string
- *@n: the amount of bytes to be maximally used
- *Return: the concatenated string
+ **_strncat - concatsdfenates two stsdfrings
+ *@dest: the firsdfsdfst strsdfing
+ *@src: the seconsdfd strsdfing
+ *@n: the amousdfnt of bytessdfsdf to be maximally useddf
+ *Return: the concsdfatenated strsdfing
  */
 char *_strncat(char *dest, char *src, int n)
 {
@@ -58,10 +58,10 @@ char *_strncat(char *dest, char *src, int n)
 }
 
 /**
- **_strchr - locates a character in a string
- *@s: the string to be parsed
- *@c: the character to look for
- *Return: (s) a pointer to the memory area s
+ **_strchr - locsdfates a charsdfsdfacter in a string
+ *@s: the strisdfng to be parssdfed
+ *@c: the characsdfsdfter to look for
+ *Return: (s) a poinsdfter to the memosdfry aresdfa s
  */
 char *_strchr(char *s, char c)
 {

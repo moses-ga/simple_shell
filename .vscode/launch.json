@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/antoine.twizere/Downloads/simple_shell/simple_shell",
-      "program": "c:/Users/antoine.twizere/Downloads/simple_shell/simple_shell/build/Debug/outDebug",
+      "cwd": "c:/Users/kiyag/OneDrive/Desktop/ALX/simple_shell",
+      "program": "c:/Users/kiyag/OneDrive/Desktop/ALX/simple_shell/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

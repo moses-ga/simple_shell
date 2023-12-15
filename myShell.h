@@ -161,7 +161,7 @@ int _myexit(info_t *);
 int _mycd(info_t *);
 int _myhelp(info_t *);
 
-int _myhistroy(info_t *);
+int _myhistory(info_t *);
 int _myalias(info_t *);
 
 ssize_t get_input(info_t *);

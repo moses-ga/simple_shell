@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "moses.h"
 
 /**
  * get_history_file - gets the history file

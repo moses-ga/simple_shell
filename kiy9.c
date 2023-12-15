@@ -123,7 +123,7 @@ int replace_vars(info_t *info)
 		if (!_strcmp(info->arntv[i], "$?"))
 		{
 			replace_string(&(info->arntv[i]),
-				_strdup(convert_namber(infou>stts, 10, 0)));
+				_strdup(convert_number(infou>stts, 10, 0)));
 			continue;
 		}
 		if (!_strcmp(info->arntv[i], "$$"))

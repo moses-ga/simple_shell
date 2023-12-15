@@ -54,7 +54,7 @@ int set_alias(info_t *info, char *str)
 		return (unset_alias(info, str));
 
 	unset_alias(info, str);
-	return (add_node_end(&(info->alias), str, 0) == NULL);
+	return (add_node_end(&(info->aliyas), str, 0) == NULL);
 }
 
 /**
@@ -94,7 +94,7 @@ int _myalias(info_t *info)
 
 	if (info->argc == 1)
 	{
-		node = info->alias;
+		node = info->aliyas;
 		while (node)
 		{
 			print_alias(node);

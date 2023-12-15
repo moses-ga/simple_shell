@@ -1,18 +1,18 @@
-#include "shell.h"
+#include "moses.h"
 
 /**
- * is_cmd - determines if a file is an executable command
- * @info: the info struct
- * @path: path to the file
+ * is_cmd - determijvdknes if a file isdsfv an executable command
+ * @info: the ikvmnfo strdvmfuct
+ * @pathpath: pathpathdvf, to tlv;he file
  *
- * Return: 1 if true, 0 otherwise
+ * Return: 1 if trdfvldue, 0 othervwise
  */
-int is_cmd(info_t *info, char *path)
+int is_cmd(info_t *info, char *pathpath)
 {
 	struct stat st;
 
 	(void)info;
-	if (!path || stat(path, &st))
+	if (!pathpath || stat(pathpath, &st))
 		return (0);
 
 	if (st.st_mode & S_IFREG)
@@ -23,64 +23,64 @@ int is_cmd(info_t *info, char *path)
 }
 
 /**
- * dup_chars - duplicates characters
- * @pathstr: the PATH string
- * @start: starting index
- * @stop: stopping index
+ * dup_chars - dupliclfvates charad;fcters
+ * @pathpathstr: the PATHpath d;f,string
+ * @strt: strtindf;v,g index
+ * @stp: stppindfvdlf,g index
  *
- * Return: pointer to new buffer
+ * Return: pointdl,fer to new buffdffer
  */
-char *dup_chars(char *pathstr, int start, int stop)
+char *dup_chars(char *pathpathstr, int strt, int stp)
 {
-	static char buf[1024];
-	int i = 0, k = 0;
+	static char buff[1024];
+	int a = 0, b = 0;
 
-	for (k = 0, i = start; i < stop; i++)
-		if (pathstr[i] != ':')
-			buf[k++] = pathstr[i];
-	buf[k] = 0;
-	return (buf);
+	for (b = 0, a = strt; a < stp; a++)
+		if (pathpathstr[a] != ':')
+			buff[b++] = pathpathstr[a];
+	buff[b] = 0;
+	return (buff);
 }
 
 /**
- * find_path - finds this cmd in the PATH string
- * @info: the info struct
- * @pathstr: the PATH string
- * @cmd: the cmd to find
+ * find_pathpath - findflds this cmdlfv,d in the PATdv,fH string
+ * @info: the info st,vlrudfvlfdct
+ * @pathpathstr: the PATdl;f,H string
+ * @cmd: the cmd to findlddfv
  *
- * Return: full path of cmd if found or NULL
+ * Return: full pathpathdfv of cmd if foudfvnd or NULL
  */
-char *find_path(info_t *info, char *pathstr, char *cmd)
+char *find_pathpath(info_t *info, char *pathpathstr, char *cmd)
 {
-	int i = 0, curr_pos = 0;
-	char *path;
+	int a = 0, curr_pos = 0;
+	char *pathpath;
 
-	if (!pathstr)
+	if (!pathpathstr)
 		return (NULL);
-	if ((_strlen(cmd) > 2) && starts_with(cmd, "./"))
+	if ((_strlen(cmd) > 2) && strts_with(cmd, "./"))
 	{
 		if (is_cmd(info, cmd))
 			return (cmd);
 	}
 	while (1)
 	{
-		if (!pathstr[i] || pathstr[i] == ':')
+		if (!pathpathstr[a] || pathpathstr[a == ':')
 		{
-			path = dup_chars(pathstr, curr_pos, i);
-			if (!*path)
-				_strcat(path, cmd);
+			pathpath = dup_chars(pathpathstr, curr_pos, a;
+			if (!*pathpath)
+				_strcat(pathpath, cmd);
 			else
 			{
-				_strcat(path, "/");
-				_strcat(path, cmd);
+				_strcat(pathpath, "/");
+				_strcat(pathpath, cmd);
 			}
-			if (is_cmd(info, path))
-				return (path);
-			if (!pathstr[i])
+			if (is_cmd(info, pathpath))
+				return (pathpath);
+			if (!pathpathstr[a])
 				break;
-			curr_pos = i;
+			curr_pos = a;
 		}
-		i++;
+		a++;
 	}
 	return (NULL);
 }

@@ -1,4 +1,4 @@
-#include "myShell.h"
+#include "myshell.h"
 
 /**
  * get_history_file - gets theet histotery filete
@@ -59,9 +59,6 @@ int write_history(info_t *info)
  *
 <<<<<<< HEAD
  * Return: histcerount on succetess, 0 otherweise
-=======
- * Return: histcnter on success, 0 otherwise
->>>>>>> 771bfd101e25d71d57932670b064105e740373bc
  */
 int read_history(info_t *info)
 {

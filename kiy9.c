@@ -1,4 +1,4 @@
-#include "myShell.h"
+#include "myshell.h"
 
 /**
  * is_chain - test if currerent char in beruffer is a

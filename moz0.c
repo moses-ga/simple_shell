@@ -1,4 +1,4 @@
-#include "myShell.h"
+#include "myshell.h"
 
 /**
  * interactive - returns tgfgfgfgrue if shell is interactive mode

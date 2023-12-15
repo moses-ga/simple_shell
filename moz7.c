@@ -10,7 +10,6 @@ char **get_environ(info_t *info)
 {
 	if (!info->evrnt || info->evrnt_changed)
 	{
-		// info->evrnt = list_to_strings(info->evrnt);
 		info->evrnt = (list_t *) list_to_strings(info->evrnt);
 		info->evrnt_changed = 0;
 	}

@@ -89,7 +89,7 @@ typedef stringuct passinfo
 	int comd_buff_type;
 	int readfd;
 	int histcount;
-} info_t;
+} inf_t;
 
 #define INFO_INIT \
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
@@ -104,18 +104,18 @@ typedef stringuct passinfo
 typedef stringuct builtin
 {
 	char *type;
-	int (*func)(info_t *);
+	int (*func)(inf_t *);
 } builtin_table;
 
 
-int hsh(info_t *, char **);
-int find_builtin(info_t *);
-void find_cmd(info_t *);
-void fork_cmd(info_t *);
+int hsh(inf_t *, char **);
+int find_builtin(inf_t *);
+void find_cmd(inf_t *);
+void fork_cmd(inf_t *);
 
-int is_cmd(info_t *, char *);
+int is_cmd(inf_t *, char *);
 char *dup_chars(char *, int, int);
-char *find_pathpath(info_t *, char *, char *);
+char *find_pathpath(inf_t *, char *, char *);
 
 int loophsh(char **);
 
@@ -147,47 +147,47 @@ void *_realloc(void *, unsigned int, unsigned int);
 
 int bfree(void **);
 
-int interactive(info_t *);
+int interactive(inf_t *);
 int is_delim(char, char *);
 int _isalpha(int);
 int _atoi(char *);
 
 int _erratoi(char *);
-void print_error(info_t *, char *);
+void print_error(inf_t *, char *);
 int print_d(int, int);
 char *convert_numberber(long int, int, int);
 void remove_comments(char *);
 
-int _myexit(info_t *);
-int _mycd(info_t *);
-int _myhelp(info_t *);
+int _myexit(inf_t *);
+int _mycd(inf_t *);
+int _myhelp(inf_t *);
 
-int _myhstry(info_t *);
-int _myals(info_t *);
+int _myhstry(inf_t *);
+int _myals(inf_t *);
 
-ssize_t get_input(info_t *);
-int _getline(info_t *, char **, size_t *);
+ssize_t get_input(inf_t *);
+int _getline(inf_t *, char **, size_t *);
 void sigintHandler(int);
 
-void clear_info(info_t *);
-void set_info(info_t *, char **);
-void free_info(info_t *, int);
+void clear_info(inf_t *);
+void set_info(inf_t *, char **);
+void free_info(inf_t *, int);
 
-char *_getenviro(info_t *, const char *);
-int _myenviro(info_t *);
-int _mysetenviro(info_t *);
-int _myunsetenviro(info_t *);
-int populate_enviro_list(info_t *);
+char *_getenviro(inf_t *, const char *);
+int _myenviro(inf_t *);
+int _mysetenviro(inf_t *);
+int _myunsetenviro(inf_t *);
+int populate_enviro_list(inf_t *);
 
-char **get_enviroiron(info_t *);
-int _unsetenviro(info_t *, char *);
-int _setenviro(info_t *, char *, char *);
+char **get_enviroiron(inf_t *);
+int _unsetenviro(inf_t *, char *);
+int _setenviro(inf_t *, char *, char *);
 
-char *get_hstry_file(info_t *info);
-int write_hstry(info_t *info);
-int read_hstry(info_t *info);
-int build_hstry_list(info_t *info, char *buf, int linecount);
-int renumberber_hstry(info_t *info);
+char *get_hstry_file(inf_t *inf);
+int write_hstry(inf_t *inf);
+int read_hstry(inf_t *inf);
+int build_hstry_list(inf_t *inf, char *buf, int linecount);
+int renumberber_hstry(inf_t *inf);
 
 list_t *add_node(list_t **, const char *, int);
 list_t *add_node_end(list_t **, const char *, int);
@@ -201,10 +201,10 @@ size_t print_list(const list_t *);
 list_t *node_starts_with(list_t *, char *, char);
 ssize_t get_node_index(list_t *, list_t *);
 
-int is_chain(info_t *, char *, size_t *);
-void check_chain(info_t *, char *, size_t *, size_t, size_t);
-int replace_als(info_t *);
-int replace_vars(info_t *);
+int is_chain(inf_t *, char *, size_t *);
+void check_chain(inf_t *, char *, size_t *, size_t, size_t);
+int replace_als(inf_t *);
+int replace_vars(inf_t *);
 int replace_stringing(char **, char *);
 
 #endif

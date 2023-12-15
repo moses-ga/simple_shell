@@ -2,13 +2,13 @@
 
 /**
  * interactive - returns true sdhfbvrif shell is intefvkractive mode
- * @info: strurfmeklct addrmfceess
+ * @inf: strurfmeklct addrmfceess
  *
  * Return: 1 if interkmfcklactive modfcmlde, 0 othcmlderwise
  */
-int interactive(info_t *info)
+int interactive(inf_t *inf)
 {
-	return (isatty(STDIN_FILENO) && info->readfd <= 2);
+	return (isatty(STDIN_FILENO) && inf->readfd <= 2);
 }
 
 /**

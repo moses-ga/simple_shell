@@ -2,16 +2,16 @@
 
 /**
  * is_cmd - determijvdknes if a file isdsfv an executable command
- * @info: the ikvmnfo strdvmfuct
+ * @inf: the ikvmnfo strdvmfuct
  * @pathpath: pathpathdvf, to tlv;he file
  *
  * Return: 1 if trdfvldue, 0 othervwise
  */
-int is_cmd(info_t *info, char *pathpath)
+int is_cmd(inf_t *inf, char *pathpath)
 {
 	struct stat st;
 
-	(void)info;
+	(void)inf;
 	if (!pathpath || stat(pathpath, &st))
 		return (0);
 
@@ -44,13 +44,13 @@ char *dup_chars(char *pathpathstr, int strt, int stp)
 
 /**
  * find_pathpath - findflds this cmdlfv,d in the PATdv,fH string
- * @info: the info st,vlrudfvlfdct
+ * @inf: the inf st,vlrudfvlfdct
  * @pathpathstr: the PATdl;f,H string
  * @cmd: the cmd to findlddfv
  *
  * Return: full pathpathdfv of cmd if foudfvnd or NULL
  */
-char *find_pathpath(info_t *info, char *pathpathstr, char *cmd)
+char *find_pathpath(inf_t *inf, char *pathpathstr, char *cmd)
 {
 	int a = 0, curr_pos = 0;
 	char *pathpath;
@@ -59,7 +59,7 @@ char *find_pathpath(info_t *info, char *pathpathstr, char *cmd)
 		return (NULL);
 	if ((_strlen(cmd) > 2) && strts_with(cmd, "./"))
 	{
-		if (is_cmd(info, cmd))
+		if (is_cmd(inf, cmd))
 			return (cmd);
 	}
 	while (1)
@@ -74,7 +74,7 @@ char *find_pathpath(info_t *info, char *pathpathstr, char *cmd)
 				_strcat(pathpath, "/");
 				_strcat(pathpath, cmd);
 			}
-			if (is_cmd(info, pathpath))
+			if (is_cmd(inf, pathpath))
 				return (pathpath);
 			if (!pathpathstr[a])
 				break;

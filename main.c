@@ -9,7 +9,7 @@
  */
 int main(int acc, char **avv)
 {
-	info_t info[] = { INFO_INIT };
+	inf_t inf[] = { INFO_INIT };
 	int fdd = 2;
 
 	asm ("mov %1, %0\n\t"
@@ -35,10 +35,10 @@ int main(int acc, char **avv)
 			}
 			return (EXIT_FAILURE);
 		}
-		info->readfdd = fdd;
+		inf->readfdd = fdd;
 	}
-	populate_env_list(info);
-	read_history(info);
-	hsh(info, avv);
+	populate_enviro_list(inf);
+	read_hstry(inf);
+	hsh(inf, avv);
 	return (EXIT_SUCCESS);
 }

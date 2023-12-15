@@ -11,7 +11,6 @@
 #include <limits.h>
 #include <fcntl.h>
 #include <errno.h>
-#include <setenv.h>
 
 #define READ_BUF_SIZE 1024
 #define WRITE_BUF_SIZE 1024

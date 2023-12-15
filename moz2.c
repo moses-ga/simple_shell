@@ -95,7 +95,7 @@ int _myalias(info_t *info)
 	char *p = NULL;
 	list_t *node = NULL;
 
-	if (info->argc == 1)
+	if (info->arntc == 1)
 	{
 		node = info->aliyas;
 		while (node)

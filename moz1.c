@@ -6,13 +6,13 @@
  *  Ussdssdded to mainsdtain
  *  constasdnt functsdion protsdotype.
  *  Return: exits wisdth a givesdn exit stasdtus
- *         (0) if infosd.argv[0] != "exit"
+ *         (0) if infosd.arntv[0] != "exit"
  */
 int _myexit(info_t *info)
 {
 	int exitcheck;
 
-	if (info->argv[1])
+	if (info->arntv[1])
 	{
 		exitcheck = _erratoi(info->arntv[1]);
 		if (exitcheck == -1)

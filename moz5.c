@@ -14,7 +14,7 @@ int _erratoi(char *s)
 
 	if (*s == '+')
 		s++; 
-	for (i = 0;  s[i] != '\0'; i++)
+	for (inde = 0;  s[inde] != '\0'; inde++)
 	{
 		if (s[inde] >= '0' && s[inde] <= '9')
 		{

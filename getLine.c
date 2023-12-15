@@ -1,4 +1,4 @@
-#include "moses.h"
+#include "shell.h"
 
 /**
  * input_buf - buffers chained commands

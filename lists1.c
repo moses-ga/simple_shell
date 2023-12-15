@@ -1,4 +1,4 @@
-#include "moses.h"
+#include "shell.h"
 
 /**
  * list_len - determines length of linked list
@@ -20,18 +20,18 @@ size_t list_len(const list_t *h)
 
 /**
  * list_to_strings - returns an array of strings of the list->str
- * @headd: pointer to first node
+ * @head: pointer to first node
  *
  * Return: array of strings
  */
-char **list_to_strings(list_t *headd)
+char **list_to_strings(list_t *head)
 {
-	list_t *node = headd;
-	size_t i = list_len(headd), j;
+	list_t *node = head;
+	size_t i = list_len(head), j;
 	char **strs;
 	char *str;
 
-	if (!headd || !i)
+	if (!head || !i)
 		return (NULL);
 	strs = malloc(sizeof(char *) * (i + 1));
 	if (!strs)
@@ -80,7 +80,7 @@ size_t print_list(const list_t *h)
 
 /**
  * node_starts_with - returns node whose string starts with prefix
- * @node: pointer to list headd
+ * @node: pointer to list head
  * @prefix: string to match
  * @c: the next character after prefix to match
  *
@@ -102,20 +102,20 @@ list_t *node_starts_with(list_t *node, char *prefix, char c)
 
 /**
  * get_node_index - gets the index of a node
- * @headd: pointer to list headd
+ * @head: pointer to list head
  * @node: pointer to the node
  *
  * Return: index of node or -1
  */
-ssize_t get_node_index(list_t *headd, list_t *node)
+ssize_t get_node_index(list_t *head, list_t *node)
 {
 	size_t i = 0;
 
-	while (headd)
+	while (head)
 	{
-		if (headd == node)
+		if (head == node)
 			return (i);
-		headd = headd->next;
+		head = head->next;
 		i++;
 	}
 	return (-1);

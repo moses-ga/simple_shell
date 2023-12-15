@@ -1,27 +1,27 @@
-#include "moses.h"
+#include "shell.h"
 
 /**
  * _myenv - prints the current environment
- * @inf: Structure containing potential arguments. Used to maintain
+ * @info: Structure containing potential arguments. Used to maintain
  *          constant function prototype.
  * Return: Always 0
  */
-int _myenviro(inf_t *inf)
+int _myenv(info_t *info)
 {
-	print_list_str(inf->env);
+	print_list_str(info->env);
 	return (0);
 }
 
 /**
  * _getenv - gets the value of an environ variable
- * @inf: Structure containing potential arguments. Used to maintain
+ * @info: Structure containing potential arguments. Used to maintain
  * @name: env var name
  *
  * Return: the value
  */
-char *_getenviro(inf_t *inf, const char *name)
+char *_getenv(info_t *info, const char *name)
 {
-	list_t *node = inf->env;
+	list_t *node = info->env;
 	char *p;
 
 	while (node)
@@ -37,56 +37,56 @@ char *_getenviro(inf_t *inf, const char *name)
 /**
  * _mysetenv - Initialize a new environment variable,
  *             or modify an existing one
- * @inf: Structure containing potential arguments. Used to maintain
+ * @info: Structure containing potential arguments. Used to maintain
  *        constant function prototype.
  *  Return: Always 0
  */
-int _mysetenviro(inf_t *inf)
+int _mysetenv(info_t *info)
 {
-	if (inf->argc != 3)
+	if (info->argc != 3)
 	{
 		_eputs("Incorrect number of arguements\n");
 		return (1);
 	}
-	if (_setenviro(inf, inf->argv[1], inf->argv[2]))
+	if (_setenv(info, info->argv[1], info->argv[2]))
 		return (0);
 	return (1);
 }
 
 /**
  * _myunsetenv - Remove an environment variable
- * @inf: Structure containing potential arguments. Used to maintain
+ * @info: Structure containing potential arguments. Used to maintain
  *        constant function prototype.
  *  Return: Always 0
  */
-int _myunsetenviro(inf_t *inf)
+int _myunsetenv(info_t *info)
 {
 	int i;
 
-	if (inf->argc == 1)
+	if (info->argc == 1)
 	{
 		_eputs("Too few arguements.\n");
 		return (1);
 	}
-	for (i = 1; i <= inf->argc; i++)
-		_unsetenviro(inf, inf->argv[i]);
+	for (i = 1; i <= info->argc; i++)
+		_unsetenv(info, info->argv[i]);
 
 	return (0);
 }
 
 /**
  * populate_env_list - populates env linked list
- * @inf: Structure containing potential arguments. Used to maintain
+ * @info: Structure containing potential arguments. Used to maintain
  *          constant function prototype.
  * Return: Always 0
  */
-int populate_enviro_list(inf_t *inf)
+int populate_env_list(info_t *info)
 {
 	list_t *node = NULL;
 	size_t i;
 
 	for (i = 0; environ[i]; i++)
 		add_node_end(&node, environ[i], 0);
-	inf->env = node;
+	info->env = node;
 	return (0);
 }

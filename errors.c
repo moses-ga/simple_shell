@@ -1,20 +1,20 @@
-#include "moses.h"
+#include "shell.h"
 
 /**
- *_eputs - prints an input stringing
- * @str: the stringing to be printed
+ *_eputs - prints an input string
+ * @str: the string to be printed
  *
  * Return: Nothing
  */
-void _eputs(char *string)
+void _eputs(char *str)
 {
 	int i = 0;
 
-	if (!string)
+	if (!str)
 		return;
-	while (string[i] != '\0')
+	while (str[i] != '\0')
 	{
-		_eputchar(string[i]);
+		_eputchar(str[i]);
 		i++;
 	}
 }
@@ -65,21 +65,21 @@ int _putfd(char c, int fd)
 }
 
 /**
- *_putsfd - prints an input stringing
- * @string: the stringing to be printed
+ *_putsfd - prints an input string
+ * @str: the string to be printed
  * @fd: the filedescriptor to write to
  *
  * Return: the number of chars put
  */
-int _putsfd(char *string, int fd)
+int _putsfd(char *str, int fd)
 {
 	int i = 0;
 
-	if (!string)
+	if (!str)
 		return (0);
-	while (*string)
+	while (*str)
 	{
-		i += _putfd(*string++, fd);
+		i += _putfd(*str++, fd);
 	}
 	return (i);
 }

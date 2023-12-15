@@ -12,10 +12,6 @@
 #include <fcntl.h>
 #include <errno.h>
 
-void populate_env_list(void);
-int _myexit(info_t *info);
-int _myenv(info_t *info);
-
 #define READ_BUF_SIZE 1024
 #define WRITE_BUF_SIZE 1024
 #define BUF_FLUSH -1

@@ -1,15 +1,9 @@
 #include "myShell.h"
 
 /**
-<<<<<<< HEAD
  * hsh - masdin sheldssdl loop
  * @info: the parsdameter & dsds info struct
  * @av: the argdsument vectdsor from dsmain()
-=======
- * hsh - main shell loop
- * @info: the parameter & return info struct
- * @av: the arntument vector from main()
->>>>>>> 5c2336b93c73977304931234d1a37a46b8b76601
  *
  * Return: 0 odsn successds, 1 on error,ds or error code
  */

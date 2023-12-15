@@ -30,12 +30,17 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 				(*buf)[r - 1] = '\0';
 				r--;
 			}
-			info->linecount_flag = 1;
+			info->linnecnter_flg = 1;
 			remove_comments(*buf);
+<<<<<<< HEAD
 			build_history_list(info, *buf, info->histcount++);
+=======
+			build_history_list(info, *buf, info->histcnter++);
+			/* if (_strchr(*buf, ';')) is this a command chain? */
+>>>>>>> 771bfd101e25d71d57932670b064105e740373bc
 			{
 				*len = r;
-				info->cmd_buf = buf;
+				info->command_buf = buf;
 			}
 		}
 	}
@@ -53,7 +58,7 @@ ssize_t get_input(info_t *info)
 	static char *buf;
 	static size_t i, j, len;
 	ssize_t r = 0;
-	char **buf_p = &(info->arg), *p;
+	char **buf_p = &(info->arnt), *p;
 
 	_putchar(BUF_FLUSH);
 	r = input_buf(info, &buf, &len);
@@ -75,8 +80,13 @@ ssize_t get_input(info_t *info)
 		i = j + 1;
 		if (i >= len)
 		{
+<<<<<<< HEAD
 			i = len = 0;
 			info->cmd_buf_type = CMD_NORM;
+=======
+			i = len = 0; /* reset position and length */
+			info->command_buf_type = CMD_NORM;
+>>>>>>> 771bfd101e25d71d57932670b064105e740373bc
 		}
 
 		*buf_p = p;
@@ -100,7 +110,7 @@ ssize_t read_buf(info_t *info, char *buf, size_t *i)
 
 	if (*i)
 		return (0);
-	r = read(info->readfd, buf, READ_BUF_SIZE);
+	r = read(info->somafd, buf, READ_BUF_SIZE);
 	if (r >= 0)
 		*i = r;
 	return (r);

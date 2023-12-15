@@ -1,32 +1,44 @@
 #include "myShell.h"
 
 /**
+<<<<<<< HEAD
  * _myexit - exitsds the shesdll
  * @info: Structure contaisdning potensdsdtial argumsdents.
  *  Ussdssdded to mainsdtain
  *  constasdnt functsdion protsdotype.
  *  Return: exits wisdth a givesdn exit stasdtus
  *         (0) if infosd.argv[0] != "exit"
+=======
+ * _myexit - exits the shell
+ * @info: Structure containing potential arguments. Used to maintain
+ *          constant function prototype.
+ *  Return: exits with a given exit stts
+ *         (0) if info.arntv[0] != "exit"
+>>>>>>> 771bfd101e25d71d57932670b064105e740373bc
  */
 int _myexit(info_t *info)
 {
 	int exitcheck;
 
+<<<<<<< HEAD
 	if (info->argv[1])
+=======
+	if (info->arntv[1])  /* If there is an exit arguement */
+>>>>>>> 771bfd101e25d71d57932670b064105e740373bc
 	{
-		exitcheck = _erratoi(info->argv[1]);
+		exitcheck = _erratoi(info->arntv[1]);
 		if (exitcheck == -1)
 		{
-			info->status = 2;
+			info->stts = 2;
 			print_error(info, "Illegal number: ");
-			_eputs(info->argv[1]);
+			_eputs(info->arntv[1]);
 			_eputchar('\n');
 			return (1);
 		}
-		info->err_num = _erratoi(info->argv[1]);
+		info->erro_nam = _erratoi(info->arntv[1]);
 		return (-2);
 	}
-	info->err_num = -1;
+	info->erro_nam = -1;
 	return (-2);
 }
 
@@ -45,7 +57,7 @@ int _mycd(info_t *info)
 	s = getcwd(buffer, 1024);
 	if (!s)
 		_puts("TODO: >>getcwd failure emsg here<<\n");
-	if (!info->argv[1])
+	if (!info->arntv[1])
 	{
 		dir = _getenv(info, "HOME=");
 		if (!dir)
@@ -54,7 +66,7 @@ int _mycd(info_t *info)
 		else
 			chdir_ret = chdir(dir);
 	}
-	else if (_strcmp(info->argv[1], "-") == 0)
+	else if (_strcmp(info->arntv[1], "-") == 0)
 	{
 		if (!_getenv(info, "OLDPWD="))
 		{
@@ -67,11 +79,11 @@ int _mycd(info_t *info)
 			chdir((dir = _getenv(info, "OLDPWD=")) ? dir : "/");
 	}
 	else
-		chdir_ret = chdir(info->argv[1]);
+		chdir_ret = chdir(info->arntv[1]);
 	if (chdir_ret == -1)
 	{
 		print_error(info, "can't cd to ");
-		_eputs(info->argv[1]), _eputchar('\n');
+		_eputs(info->arntv[1]), _eputchar('\n');
 	}
 	else
 	{
@@ -92,7 +104,7 @@ int _myhelp(info_t *info)
 {
 	char **arg_array;
 
-	arg_array = info->argv;
+	arg_array = info->arntv;
 	_puts("help call works. Function not yet implemented \n");
 	if (0)
 		_puts(*arg_array);

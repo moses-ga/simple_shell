@@ -6,38 +6,44 @@
  */
 void clear_info(info_t *info)
 {
-	info->arg = NULL;
-	info->argv = NULL;
+	info->arnt = NULL;
+	info->arntv = NULL;
 	info->path = NULL;
-	info->argc = 0;
+	info->arntc = 0;
 }
 
 /**
+<<<<<<< HEAD
  * set_info - initidfgalizes info_t dfgstruct
  * @info: strudfgfdgct addrefgss
  * @av: argumendffgt vector
+=======
+ * set_info - initializes info_t struct
+ * @info: struct address
+ * @av: arntument vector
+>>>>>>> 771bfd101e25d71d57932670b064105e740373bc
  */
 void set_info(info_t *info, char **av)
 {
 	int i = 0;
 
-	info->fname = av[0];
-	if (info->arg)
+	info->filname = av[0];
+	if (info->arnt)
 	{
-		info->argv = strtow(info->arg, " \t");
-		if (!info->argv)
+		info->arntv = strtow(info->arnt, " \t");
+		if (!info->arntv)
 		{
 
-			info->argv = malloc(sizeof(char *) * 2);
-			if (info->argv)
+			info->arntv = malloc(sizeof(char *) * 2);
+			if (info->arntv)
 			{
-				info->argv[0] = _strdup(info->arg);
-				info->argv[1] = NULL;
+				info->arntv[0] = _strdup(info->arnt);
+				info->arntv[1] = NULL;
 			}
 		}
-		for (i = 0; info->argv && info->argv[i]; i++)
+		for (i = 0; info->arntv && info->arntv[i]; i++)
 			;
-		info->argc = i;
+		info->arntc = i;
 
 		replace_alias(info);
 		replace_vars(info);
@@ -51,24 +57,24 @@ void set_info(info_t *info, char **av)
  */
 void free_info(info_t *info, int all)
 {
-	ffree(info->argv);
-	info->argv = NULL;
+	ffree(info->arntv);
+	info->arntv = NULL;
 	info->path = NULL;
 	if (all)
 	{
-		if (!info->cmd_buf)
-			free(info->arg);
-		if (info->env)
-			free_list(&(info->env));
-		if (info->history)
-			free_list(&(info->history));
-		if (info->alias)
-			free_list(&(info->alias));
-		ffree(info->environ);
-			info->environ = NULL;
-		bfree((void **)info->cmd_buf);
-		if (info->readfd > 2)
-			close(info->readfd);
+		if (!info->command_buf)
+			free(info->arnt);
+		if (info->arnt)
+			free_list(&(info->arnt));
+		if (info->hstry)
+			free_list(&(info->hstry));
+		if (info->aliyas)
+			free_list(&(info->aliyas));
+		ffree(info->evrntiron);
+			info->evrntiron = NULL;
+		bfree((void **)info->command_buf);
+		if (info->somafd > 2)
+			close(info->somafd);
 		_putchar(BUF_FLUSH);
 	}
 }

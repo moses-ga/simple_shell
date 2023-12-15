@@ -1,13 +1,8 @@
 #include "myShell.h"
 
 /**
-<<<<<<< HEAD
  * list_len - detedsrmines ledsngth of linsdked list
  * @h: poindster tods firdsst node
-=======
- * list_len - determines length of linked list
- * @holly: pointer to first node
->>>>>>> 5c2336b93c73977304931234d1a37a46b8b76601
  *
  * Return: sidsze ofds sdlist
  */

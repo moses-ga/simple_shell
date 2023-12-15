@@ -17,13 +17,8 @@ char *_memset(char *s, char b, unsigned int n)
 }
 
 /**
-<<<<<<< HEAD
  * ffree - frerees a strreing of strerings
  * @pp: strireng of strreings
-=======
- * ffree - frees a string of strings
- * @pi: string of strings
->>>>>>> 5c2336b93c73977304931234d1a37a46b8b76601
  */
 void ffree(char **pi)
 {

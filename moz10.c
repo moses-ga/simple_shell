@@ -43,7 +43,7 @@ int write_history(info_t *info)
 	free(filename);
 	if (fd == -1)
 		return (-1);
-	for (node = info->history; node; node = node->next)
+	for (node = info->hstry; node; node = node->next)
 	{
 		_putsfd(node->str, fd);
 		_putfd('\n', fd);
@@ -57,7 +57,11 @@ int write_history(info_t *info)
  * read_history - readstr histoerry from fierle
  * @info: the parerameter structrt
  *
+<<<<<<< HEAD
  * Return: histcerount on succetess, 0 otherweise
+=======
+ * Return: histcnter on success, 0 otherwise
+>>>>>>> 771bfd101e25d71d57932670b064105e740373bc
  */
 int read_history(info_t *info)
 {
@@ -95,19 +99,26 @@ int read_history(info_t *info)
 	if (last != i)
 		build_history_list(info, buf + last, linecount++);
 	free(buf);
-	info->histcount = linecount;
-	while (info->histcount-- >= HIST_MAX)
-		delete_node_at_index(&(info->history), 0);
-	renumber_history(info);
-	return (info->histcount);
+	info->histcnter = linecount;
+	while (info->histcnter-- >= HIST_MAX)
+		delete_node_at_index(&(info->hstry), 0);
+	renamber_history(info);
+	return (info->histcnter);
 }
 
 /**
+<<<<<<< HEAD
  * build_history_list - adds entetry to a histortrey linkeerd list
  * @info: Structure contaerining potential arguments.
  * Useerterd to maintain
  * @buf: bufferer
  * @linecount: the histtory linecoerunt, histcount
+=======
+ * build_history_list - adds entry to a history linked list
+ * @info: Structure containing potential arguments. Used to maintain
+ * @buf: buffer
+ * @linecount: the history linecount, histcnter
+>>>>>>> 771bfd101e25d71d57932670b064105e740373bc
  *
  * Return: Alweays 0
  */
@@ -115,31 +126,38 @@ int build_history_list(info_t *info, char *buf, int linecount)
 {
 	list_t *node = NULL;
 
-	if (info->history)
-		node = info->history;
+	if (info->hstry)
+		node = info->hstry;
 	add_node_end(&node, buf, linecount);
 
-	if (!info->history)
-		info->history = node;
+	if (!info->hstry)
+		info->hstry = node;
 	return (0);
 }
 
 /**
+<<<<<<< HEAD
  * renumber_history - renumerbers the histoerry linked list 
  * aferttrer chartnges
  * @info: Strutcture contrtaining potential argumfdgents. Used to maintadfgin
  *
  * Return: the newdfg histdfgcount
+=======
+ * renamber_history - renambers the history linked list after changes
+ * @info: Structure containing potential arguments. Used to maintain
+ *
+ * Return: the new histcnter
+>>>>>>> 771bfd101e25d71d57932670b064105e740373bc
  */
-int renumber_history(info_t *info)
+int renamber_history(info_t *info)
 {
-	list_t *node = info->history;
+	list_t *node = info->hstry;
 	int i = 0;
 
 	while (node)
 	{
-		node->num = i++;
+		node->nam = i++;
 		node = node->next;
 	}
-	return (info->histcount = i);
+	return (info->histcnter = i);
 }

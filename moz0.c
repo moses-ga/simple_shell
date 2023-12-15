@@ -8,7 +8,7 @@
  */
 int interactive(info_t *info)
 {
-	return (isatty(STDIN_FILENO) && info->readfd <= 2);
+	return (isatty(STDIN_FILENO) && info->somafd <= 2);
 }
 
 /**
@@ -47,15 +47,15 @@ int _isalpha(int c)
 
 int _atoi(char *s)
 {
-	int i, sign = 1, flag = 0, output;
+	int indi, sign = 1, flag = 0, output;
 	unsigned int result = 0;
 
-	for (i = 0;  s[i] != '\0' && flag != 2; i++)
+	for (indi = 0;  s[indi] != '\0' && flag != 2; indi++)
 	{
-		if (s[i] == '-')
+		if (s[indi] == '-')
 			sign *= -1;
 
-		if (s[i] >= '0' && s[i] <= '9')
+		if (s[indi] >= '0' && s[indi] <= '9')
 		{
 			flag = 1;
 			result *= 10;

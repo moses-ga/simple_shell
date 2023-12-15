@@ -1,4 +1,4 @@
-#include "myshell.h"
+#include "main.h"
 
 /**
  * clear_info - initialdfgizes info_t stdfgruct

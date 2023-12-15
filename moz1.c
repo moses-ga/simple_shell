@@ -1,4 +1,4 @@
-#include "myshell.h"
+#include "main.h"
 
 /**
  * _myexit - exitsds the shesdll

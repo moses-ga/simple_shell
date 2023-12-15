@@ -1,4 +1,4 @@
-#include "myshell.h"
+#include "main.h"
 
 /**
  * get_history_file - gets theet histotery filete

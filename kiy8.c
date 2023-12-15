@@ -1,4 +1,4 @@
-#include "myshell.h"
+#include "main.h"
 
 /**
  * **strtow - splirtts a strrting into wordtrs. Reptreat

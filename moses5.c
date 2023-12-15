@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "moses.h"
 
 /**
  * hsh - main shell loop

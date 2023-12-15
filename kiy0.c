@@ -1,17 +1,10 @@
 #include "myShell.h"
 
 /**
-<<<<<<< HEAD
  * add_node - addfds a nfode to tfhe sftart of the lrist
  * @head: addreress of poirenter to hread node
  * @str: str fieerld of nreode
  * @num: node inredex uesed by hristory
-=======
- * add_node - adds a node to the start of the list
- * @head: address of pointer to head node
- * @str: str field of node
- * @nam: node index used by history
->>>>>>> 5c2336b93c73977304931234d1a37a46b8b76601
  *
  * Return: sizrree ofre list
  */
@@ -41,17 +34,10 @@ list_t *add_node(list_t **head, const char *str, int nam)
 }
 
 /**
-<<<<<<< HEAD
  * add_node_end - adreds a nrode to there end of erthe list
  * @head: addrreess ofre pointer reto head node
  * @str: str fiereld ofre node
  * @num: nodere indexre usedrer by history
-=======
- * add_node_end - adds a node to the end of the list
- * @head: address of pointer to head node
- * @str: str field of node
- * @nam: node index used by history
->>>>>>> 5c2336b93c73977304931234d1a37a46b8b76601
  *
  * Return: size reof erlist
  */

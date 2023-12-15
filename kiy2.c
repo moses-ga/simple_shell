@@ -1,15 +1,9 @@
 #include "myShell.h"
 
 /**
-<<<<<<< HEAD
  * main - our entry function entry point
  * @ac: arguments count
  * @av: arguments vector
-=======
- * main - entry point
- * @agc: arg count
- * @agv: arg vector
->>>>>>> 5c2336b93c73977304931234d1a37a46b8b76601
  *
  * Return: 0 on success, 1 otherwise
  */

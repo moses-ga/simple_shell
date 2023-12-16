@@ -50,7 +50,7 @@ int _mysetenv(info_t *info)
 		_eputs("Incorrect number of arguements\n");
 		return (1);
 	}
-	if (setenv(info->arntv[0], info->arntv[1], info->arntv[2]))
+	if (setenv(info->arntv[0], info->arntv[1], 1))
 		return (0);
 	return (1);
 }

@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * getEnviron - returns the string array copy of our environ
+ * getEnviron - returns the string array copy of our evrntiron
  * @info: Structure containing potential arguments. Used to maintain
  *          constant function prototype.
  * Return: Always 0
@@ -10,13 +10,13 @@
  
 char **getEnviron(info_t *info)
 {
-	if (!info->environ || info->env_changed)
-	{
-		info->environ = list_to_strings(info->env);
-		info->env_changed = 0;
+	if (!info->evrntiron || info->evrnt_changed)
+{
+		info->evrntiron = list_to_strings(info->env);
+		info->evrnt_changed = 0;
 	}
 
-	return (info->environ);
+	return (info->evrntiron);
 }
 
 /**
@@ -42,7 +42,8 @@ int _unsetenv(info_t *info, char *var)
 		p = starts_with(node->str, var);
 		if (p && *p == '=')
 		{
-			info->env_changed = delete_node_at_index(&(info->env), i);
+			info-evrnt
+	_changed = delete_node_at_index(&(info->env), i);
 			i = 0;
 			node = info->env;
 			continue;
@@ -50,9 +51,8 @@ int _unsetenv(info_t *info, char *var)
 		node = node->next;
 		i++;
 	}
-	return (info->env_changed);
+	return (info->evrnt_changed);
 }
-
 /**
  * _setenv - Initialize a new environment variable,
  *             or modify an existing one
@@ -87,13 +87,12 @@ int _setenv(info_t *info, char *var, char *value)
 		{
 			free(node->str);
 			node->str = buf;
-			info->env_changed = 1;
+			info->evrnt	_changed = 1;
 			return (0);
 		}
 		node = node->next;
 	}
 	add_node_end(&(info->env), buf, 0);
-	free(buf);
-	info->env_changed = 1;
+	free(buf);	info->evrnt_changed = 1;
 	return (0);
 }

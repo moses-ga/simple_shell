@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 
 /**
  * getEnviron - returns the string array copy of our environ

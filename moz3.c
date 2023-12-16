@@ -1,6 +1,5 @@
-#include "main.h"
 #include <stdlib.h>
-
+#include "main.h"
 /**
  * _myenv - princvbts the currcvbcbvent environment
  * @info: Structbvcbvure containing potentibval argumencbvts.

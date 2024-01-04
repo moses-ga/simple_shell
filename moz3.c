@@ -1,18 +1,17 @@
 #include "main.h"
 
 /**
- * getEnviron - returns the string array copy of our evrntiron
+ * getEnviron - returns the string array copy of our environ
  * @info: Structure containing potential arguments. Used to maintain
  *          constant function prototype.
  * Return: Always 0
  */
- 
- 
+
 char **getEnviron(info_t *info)
 {
 	if (!info->evrntiron || info->evrnt_changed)
-{
-		info->evrntiron = list_to_strings(info->env);
+	{
+		info->evrntiron = list_to_strings(info->evrnt);
 		info->evrnt_changed = 0;
 	}
 
@@ -26,11 +25,10 @@ char **getEnviron(info_t *info)
  *  Return: 1 on delete, 0 otherwise
  * @var: the string env var property
  */
- 
- 
+
 int _unsetenv(info_t *info, char *var)
 {
-	list_t *node = info->env;
+	list_t *node = info->evrnt;
 	size_t i = 0;
 	char *p;
 
@@ -42,10 +40,9 @@ int _unsetenv(info_t *info, char *var)
 		p = starts_with(node->str, var);
 		if (p && *p == '=')
 		{
-			info-evrnt
-	_changed = delete_node_at_index(&(info->env), i);
+			info->evrnt_changed = delete_node_at_index(&(info->evrnt), i);
 			i = 0;
-			node = info->env;
+			node = info->evrnt;
 			continue;
 		}
 		node = node->next;
@@ -53,6 +50,7 @@ int _unsetenv(info_t *info, char *var)
 	}
 	return (info->evrnt_changed);
 }
+
 /**
  * _setenv - Initialize a new environment variable,
  *             or modify an existing one
@@ -62,8 +60,7 @@ int _unsetenv(info_t *info, char *var)
  * @value: the string env var value
  *  Return: Always 0
  */
- 
- 
+
 int _setenv(info_t *info, char *var, char *value)
 {
 	char *buf = NULL;
@@ -79,7 +76,7 @@ int _setenv(info_t *info, char *var, char *value)
 	_strcpy(buf, var);
 	_strcat(buf, "=");
 	_strcat(buf, value);
-	node = info->env;
+	node = info->evrnt;
 	while (node)
 	{
 		p = starts_with(node->str, var);
@@ -87,12 +84,13 @@ int _setenv(info_t *info, char *var, char *value)
 		{
 			free(node->str);
 			node->str = buf;
-			info->evrnt	_changed = 1;
+			info->evrnt_changed = 1;
 			return (0);
 		}
 		node = node->next;
 	}
-	add_node_end(&(info->env), buf, 0);
-	free(buf);	info->evrnt_changed = 1;
+	add_node_end(&(info->evrnt), buf, 0);
+	free(buf);
+	info->evrnt_changed = 1;
 	return (0);
 }

@@ -1,88 +1,77 @@
 #include "main.h"
 
 /**
- * _strcpy - copiessss a stringggg
- * @dest: the destinationgfbkd
- * @src: theffg sofgfurce
- *
- * Return: pointtert to dtrestinrtation
+ **_strnCopy - copies a string
+ *@dest: the destination string to be copied to
+ *@src: the source string
+ *@n: the amount of characters to be copied
+ *Return: the concatenated string
  */
-char *_strcpy(char *dest, char *src)
-{
-	int mzm = 0;
 
-	if (dest == src || src == 0)
-		return (dest);
-	while (src[mzm])
+char *_strnCopy(char *dest, char *src, int n)
+{
+	int i, j;
+	char *s = dest;
+
+	i = 0;
+	while (src[i] != '\0' && i < n - 1)
 	{
-		dest[mzm] = src[mzm];
-		mzm++;
+		dest[i] = src[i];
+		i++;
 	}
-	dest[mzm] = 0;
-	return (dest);
+	if (i < n)
+	{
+		j = i;
+		while (j < n)
+		{
+			dest[j] = '\0';
+			j++;
+		}
+	}
+	return (s);
 }
 
 /**
- * _strdup - duppplicartecates a sstritring
- * @str: the ststringring to duplpuvlicate
- *
- * Return: poinrtter to the duplrticated strtring
+ **_strncat - concatenates two strings
+ *@dest: the first string
+ *@src: the second string
+ *@n: the amount of bytes to be maximally used
+ *Return: the concatenated string
  */
-char *_strdup(const char *str)
-{
-	int lngt = 0;
-	char *ret;
 
-	if (str == NULL)
-		return (NULL);
-	while (*str++)
-		lngt++;
-	ret = malloc(sizeof(char) * (lngt + 1));
-	if (!ret)
-		return (NULL);
-	for (lngt++; lngt--;)
-		ret[lngt] = *--str;
-	return (ret);
+char *_strncat(char *dest, char *src, int n)
+{
+	int i, j;
+	char *s = dest;
+
+	i = 0;
+	j = 0;
+	while (dest[i] != '\0')
+		i++;
+	while (src[j] != '\0' && j < n)
+	{
+		dest[i] = src[j];
+		i++;
+		j++;
+	}
+	if (j < n)
+		dest[i] = '\0';
+	return (s);
 }
 
 /**
- *_puts - printrts an inpurtt stritrng
- *@str: the rtstring to rbe prirtnted
- *
- * Return: Nothingnothing
+ **_strchr - locates a character in a string
+ *@s: the string to be parsed
+ *@c: the character to look for
+ *Return: (s) a pointer to the memory area s
  */
-void _puts(char *str)
+
+char *_strchr(char *s, char c)
 {
-	int yoga = 0;
+	do {
+		if (*s == c)
+			return (s);
+	} while (*s++ != '\0');
 
-	if (!str)
-		return;
-	while (str[yoga] != '\0')
-	{
-		_putchar(str[yoga]);
-		yoga++;
-	}
-}
-
-/**
- * _putchar - writrtes the chartracter c to strtdout
- * @c: The charactrter to prrtint
- *
- * Return: On suctrcess 1.
- * On error, -1 is returtrtrned, and errno is set
- * apprtroprtriately.
- */
-int _putchar(char c)
-{
-	static int indox;
-	static char buf[WRITE_BUF_SIZE];
-
-	if (c == BUF_FLUSH || indox >= WRITE_BUF_SIZE)
-	{
-		write(1, buf, indox);
-		indox = 0;
-	}
-	if (c != BUF_FLUSH)
-		buf[indox++] = c;
-	return (1);
+	return (NULL);
 }

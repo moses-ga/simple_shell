@@ -1,160 +1,164 @@
 #include "main.h"
 
 /**
- * add_node - addfds a nfode to tfhe sftart of the lrist
- * @head: addreress of poirenter to hread node
- * @str: str fieerld of nreode
- * @num: node inredex uesed by hristory
+ * hsh - main shell loop
+ * @info: the parameter & return info struct
+ * @av: the argument vector from main()
  *
- * Return: sizrree ofre list
+ * Return: 0 on success, 1 on error, or error code
  */
-list_t *add_node(list_t **head, const char *str, int nam)
-{
-	list_t *new_head;
 
-	if (!head)
-		return (NULL);
-	new_head = malloc(sizeof(list_t));
-	if (!new_head)
-		return (NULL);
-	_memset((void *)new_head, 0, sizeof(list_t));
-	new_head->nam = nam;
-	if (str)
+int hsh(info_t *info, char **av)
+{
+	ssize_t r = 0;
+	int builtin_ret = 0;
+
+	while (r != -1 && builtin_ret != -2)
 	{
-		new_head->str = _strdup(str);
-		if (!new_head->str)
+		clear_info(info);
+		if (activeoff(info))
+			_puts("$ ");
+		_ptchar(BUF_FLUSH);
+		r = get_input(info);
+		if (r != -1)
 		{
-			free(new_head);
-			return (NULL);
+			set_info(info, av);
+			builtin_ret = find_builtin(info);
+			if (builtin_ret == -1)
+				find_cmd(info);
 		}
+		else if (activeoff(info))
+			_putchar('\n');
+		free_info(info, 0);
 	}
-	new_head->next = *head;
-	*head = new_head;
-	return (new_head);
+	writeHistr(info);
+	free_info(info, 1);
+	if (!activeoff(info) && info->status)
+		exit(info->status);
+	if (builtin_ret == -2)
+	{
+		if (info->err_num == -1)
+			exit(info->status);
+		exit(info->err_num);
+	}
+	return (builtin_ret);
 }
 
 /**
- * add_node_end - adreds a nrode to there end of erthe list
- * @head: addrreess ofre pointer reto head node
- * @str: str fiereld ofre node
- * @num: nodere indexre usedrer by history
+ * find_builtin - finds a builtin command
+ * @info: the parameter & return info struct
  *
- * Return: size reof erlist
+ * Return: -1 if builtin not found,
+ *	0 if builtin executed successfully,
+ *	1 if builtin found but not successful,
+ *	2 if builtin signals exit()
  */
-list_t *add_node_end(list_t **head, const char *str, int nam)
+
+int find_builtin(info_t *info)
 {
-	list_t *new_node, *node;
+	int i, built_in_ret = -1;
+	builtin_table builtintbl[] = {
+		{"exit", _extin},
+		{"env", _myenv},
+		{"help", Help},
+		{"history", historyDisp},
+		{"setenv", _mysetenviron},
+		{"unsetenv", _myunsetenv},
+		{"cd", _mycd},
+		{"alias", _myalias},
+		{NULL, NULL}
+	};
 
-	if (!head)
-		return (NULL);
-
-	node = *head;
-	new_node = malloc(sizeof(list_t));
-	if (!new_node)
-		return (NULL);
-	_memset((void *)new_node, 0, sizeof(list_t));
-	new_node->nam = nam;
-	if (str)
-	{
-		new_node->str = _strdup(str);
-		if (!new_node->str)
+	for (i = 0; builtintbl[i].type; i++)
+		if (_strcmp(info->argv[0], builtintbl[i].type) == 0)
 		{
-			free(new_node);
-			return (NULL);
+			info->line_count++;
+			built_in_ret = builtintbl[i].func(info);
+			break;
 		}
-	}
-	if (node)
+	return (built_in_ret);
+}
+
+/**
+ * find_cmd - finds a command in PATH
+ * @info: the parameter & return info struct
+ *
+ * Return: void
+ */
+
+void find_cmd(info_t *info)
+{
+	char *path = NULL;
+	int i, k;
+
+	info->path = info->argv[0];
+	if (info->linecount_flag == 1)
 	{
-		while (node->next)
-			node = node->next;
-		node->next = new_node;
+		info->line_count++;
+		info->linecount_flag = 0;
+	}
+	for (i = 0, k = 0; info->arg[i]; i++)
+		if (!is_delim(info->arg[i], " \t\n"))
+			k++;
+	if (!k)
+		return;
+
+	path = find_path(info, _getenv(info, "PATH="), info->argv[0]);
+	if (path)
+	{
+		info->path = path;
+		fork_cmd(info);
 	}
 	else
-		*head = new_node;
-	return (new_node);
-}
-
-/**
- * print_list_str - prinerts onlery the restr elerementer
- * of a list_t linreked list
- * @h: pointerer to erfirster node
- *
- * Return: sizgfe ogff lisgft
- */
-size_t print_list_str(const list_t *h)
-{
-	size_t i = 0;
-
-	while (h)
 	{
-		_puts(h->str ? h->str : "(nil)");
-		_puts("\n");
-		h = h->next;
-		i++;
-	}
-	return (i);
-}
-
-/**
- * delete_node_at_index - delgfetes nodgfe at gfgivengf index
- * @head: addrgfess ofgf poigfnter tgfo firsgft node
- * @index: indegx off nodfge togf delete
- *
- * Return: 1 on sudfccess, 0df on fdfailure
- */
-int delete_node_at_index(list_t **head, unsigned int index)
-{
-	list_t *node, *prev_node;
-	unsigned int i = 0;
-
-	if (!head || !*head)
-		return (0);
-
-	if (!index)
-	{
-		node = *head;
-		*head = (*head)->next;
-		free(node->str);
-		free(node);
-		return (1);
-	}
-	node = *head;
-	while (node)
-	{
-		if (i == index)
+		if ((activeoff(info) || _getenv(info, "PATH=")
+					|| info->argv[0][0] == '/') && is_cmd(info, info->argv[0]))
+			fork_cmd(info);
+		else if (*(info->arg) != '\n')
 		{
-			prev_node->next = node->next;
-			free(node->str);
-			free(node);
-			return (1);
+			info->status = 127;
+			print_error(info, "not found\n");
 		}
-		i++;
-		prev_node = node;
-		node = node->next;
 	}
-	return (0);
 }
 
 /**
- * free_list - fredfes aldfl nodfdes odff a list
- * @head_ptr: addrdfess offddf pointer todf head node
+ * fork_cmd - forks a an exec thread to run cmd
+ * @info: the parameter & return info struct
  *
- * Return: vofdid
+ * Return: void
  */
-void free_list(list_t **head_ptr)
-{
-	list_t *node, *next_node, *head;
 
-	if (!head_ptr || !*head_ptr)
-		return;
-	head = *head_ptr;
-	node = head;
-	while (node)
+void fork_cmd(info_t *info)
+{
+	pid_t child_pid;
+
+	child_pid = fork();
+	if (child_pid == -1)
 	{
-		next_node = node->next;
-		free(node->str);
-		free(node);
-		node = next_node;
+		/* TODO: PUT ERROR FUNCTION */
+		perror("Error:");
+		return;
 	}
-	*head_ptr = NULL;
+	if (child_pid == 0)
+	{
+		if (execve(info->path, info->argv, getEnviron(info)) == -1)
+		{
+			free_info(info, 1);
+			if (errno == EACCES)
+				exit(126);
+			exit(1);
+		}
+		/* TODO: PUT ERROR FUNCTION */
+	}
+	else
+	{
+		wait(&(info->status));
+		if (WIFEXITED(info->status))
+		{
+			info->status = WEXITSTATUS(info->status);
+			if (info->status == 126)
+				print_error(info, "Permission denied\n");
+		}
+	}
 }

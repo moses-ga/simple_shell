@@ -1,94 +1,89 @@
 #include "main.h"
 
 /**
- * get_environ - returnssdfsdf the string arraysddsf copy of our environ
- * @info: Strucsddfsdfture contasdfining potesntial argumsdfents.
- * Usesdfd to maisdfntain onstant functsdfion prosdftotype.
- * Return: Alwaysdfs 0
+ * _eputs - prints an input string
+ * @str: the string to be printed
+ *
+ * Return: Nothing
  */
-char **get_environ(info_t *info)
+
+void _eputs(char *str)
 {
-	if (!info->evrnt || info->evrnt_changed)
+	int i = 0;
+
+	if (!str)
+		return;
+	while (str[i] != '\0')
 	{
-		info->evrnt = (list_t *) list_to_strings(info->evrnt);
-		info->evrnt_changed = 0;
-	}
-
-	return (char **) info->evrnt;
-
-}
-
-/**
- * _unsetenv - Removsdfe an environsdfdfsment variable
- * @info: Strucsdfsdfture containingsdf potentisdfal argumesdfnts.
- *  Used sdfto masdfintainonstant function protosdftype.
- *  Return: 1 on deldfdfsete, 0 otherwise
- * @var: the strisdfng edfnv var propsdferty
- */
-int _unsetenv(info_t *info, char *var)
-{
-	list_t *node = info->evrnt;
-	size_t i = 0;
-	char *p;
-
-	if (!node || !var)
-		return (0);
-
-	while (node)
-	{
-		p = starts_with(node->str, var);
-		if (p && *p == '=')
-		{
-			info->evrnt_changed = delete_node_at_index(&(info->evrnt), i);
-			i = 0;
-			node = info->evrnt;
-			continue;
-		}
-		node = node->next;
+		_ptchar(str[i]);
 		i++;
 	}
-	return (info->evrnt_changed);
 }
 
 /**
- * _setenv - Iniasdflize a nesdfsdfw environment variadfssdfble,
- * or modify an exsdfisting onedfs
- * @info: Strucsdfture containisdfsdfng potential argumentsdfs. Used to masdfintain
- * conssdtant functisdfsdfon prototype.
- * @var: the strisdfng env var prsdfoperty
- * @value: the stsdfring env var vsdfalue
- *  Return: Alwasdfys 0
+ * _ptchar - writes the character c to stderr
+ * @c: The character to print
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
  */
-int _setevrnt(info_t *info, char *var, char *value)
+
+int _ptchar(char c)
 {
-	char *buf = NULL;
-	list_t *node;
-	char *p;
+	static int i;
+	static char buf[WRITE_BUF_SIZE];
 
-	if (!var || !value)
-		return (0);
-
-	buf = malloc(_strlen(var) + _strlen(value) + 2);
-	if (!buf)
-		return (1);
-	_strcpy(buf, var);
-	_strcat(buf, "=");
-	_strcat(buf, value);
-	node = info->evrnt;
-	while (node)
+	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
 	{
-		p = starts_with(node->str, var);
-		if (p && *p == '=')
-		{
-			free(node->str);
-			node->str = buf;
-			info->evrnt_changed = 1;
-			return (0);
-		}
-		node = node->next;
+		write(2, buf, i);
+		i = 0;
 	}
-	add_node_end(&(info->evrnt), buf, 0);
-	free(buf);
-	info->evrnt_changed = 1;
-	return (0);
+	if (c != BUF_FLUSH)
+		buf[i++] = c;
+	return (1);
+}
+
+/**
+ * _putfd - writes the character c to given fd
+ * @c: The character to print
+ * @fd: The filedescriptor to write to
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
+ */
+
+int _putfd(char c, int fd)
+{
+	static int i;
+	static char buf[WRITE_BUF_SIZE];
+
+	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	{
+		write(fd, buf, i);
+		i = 0;
+	}
+	if (c != BUF_FLUSH)
+		buf[i++] = c;
+	return (1);
+}
+
+/**
+ * _putsfd - prints an input string
+ * @str: the string to be printed
+ * @fd: the filedescriptor to write to
+ *
+ * Return: the number of chars put
+ */
+
+int _putsfd(char *str, int fd)
+{
+	int i = 0;
+
+	if (!str)
+		return (0);
+	while (*str)
+	{
+		i += _putfd(*str++, fd);
+	}
+	return (i);
 }

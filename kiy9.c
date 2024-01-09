@@ -1,156 +1,75 @@
 #include "main.h"
-
 /**
- * is_chain - test if currerent char in beruffer is a
- *  chain delereriermeter
- * @info: theerer parameter streruct
- * @buf: the ererchar bufrefer
- * @p: addrerreess of current positionre in buf
- *
- * Return: 1 if chrereain delimeter, 0 othreerwise
+ * clear_info - initializes info_t struct
+ * @info: struct address
  */
-int is_chain(info_t *info, char *buf, size_t *p)
-{
-	size_t j = *p;
 
-	if (buf[j] == '|' && buf[j + 1] == '|')
-	{
-		buf[j] = 0;
-		j++;
-		info->command_buf_type = CMD_OR;
-	}
-	else if (buf[j] == '&' && buf[j + 1] == '&')
-	{
-		buf[j] = 0;
-		j++;
-		info->command_buf_type = CMD_AND;
-	}
-	else if (buf[j] == ';')
-	{
-		buf[j] = 0;
-		info->command_buf_type = CMD_CHAIN;
-	}
-	else
-		return (0);
-	*p = j;
-	return (1);
+void clear_info(info_t *info)
+{
+	info->arg = NULL;
+	info->argv = NULL;
+	info->path = NULL;
+	info->argc = 0;
 }
 
 /**
- * check_chain - cheercks we shouererld continreue chainering
- * basered erreoreretus
- * @info: the parerameter streruct
- * @buf: the cererhar buffer
- * @p: address of currererent position in buf
- * @i: starerreting position in beruf
- * @len: lengterreh of buf
- * Return: Void
+ * set_info - initializes info_t struct
+ * @info: struct address
+ * @av: argument vector
  */
-void check_chain(info_t *info, char *buf, size_t *p, size_t i, size_t len)
-{
-	size_t j = *p;
 
-	if (info->command_buf_type == CMD_AND)
-	{
-		if (info->stts)
-		{
-			buf[i] = 0;
-			j = len;
-		}
-	}
-	if (info->command_buf_type == CMD_OR)
-	{
-		if (!info->stts)
-		{
-			buf[i] = 0;
-			j = len;
-		}
-	}
-
-	*p = j;
-}
-
-/**
- * replace_alias - repladfces an alidfases in the
- * dftokenized stdfring
- * @info: the parameter struct
- *
- * Return: 1 if repldfaced, 0 othdferwise
- */
-int replace_alias(info_t *info)
-{
-	int i;
-	list_t *node;
-	char *p;
-
-	for (i = 0; i < 10; i++)
-	{
-		node = node_starts_with(info->aliyas, info->arntv[0], '=');
-		if (!node)
-			return (0);
-		free(info->arntv[0]);
-		p = _strchr(node->str, '=');
-		if (!p)
-			return (0);
-		p = _strdup(p + 1);
-		if (!p)
-			return (0);
-		info->arntv[0] = p;
-	}
-	return (1);
-}
-
-/**
- * replace_vars - repladfces vars in thedfdf tokenized strdfing
- * @info: the pardfameter strdfuct
- *
- * Return: 1 if repdflaced, 0 othedfrwise
- */
-int replace_vars(info_t *info)
+void set_info(info_t *info, char **av)
 {
 	int i = 0;
-	list_t *node;
 
-	for (i = 0; info->arntv[i]; i++)
+	info->fname = av[0];
+	if (info->arg)
 	{
-		if (info->arntv[i][0] != '$' || !info->arntv[i][1])
-			continue;
+		info->argv = _strRepeat(info->arg, " \t");
+		if (!info->argv)
+		{
+			info->argv = malloc(sizeof(char *) * 2);
+			if (info->argv)
+			{
+				info->argv[0] = _strdup(info->arg);
+				info->argv[1] = NULL;
+			}
+		}
+		for (i = 0; info->argv && info->argv[i]; i++)
+			;
+		info->argc = i;
 
-		if (!_strcmp(info->arntv[i], "$?"))
-		{
-			replace_string(&(info->arntv[i]),
-				_strdup(convert_number(info->stts, 10, 0)));
-			continue;
-		}
-		if (!_strcmp(info->arntv[i], "$$"))
-		{
-			replace_string(&(info->arntv[i]),
-				_strdup(convert_number(getpid(), 10, 0)));
-			continue;
-		}
-		node = node_starts_with(info->evrnt, &info->arntv[i][1], '=');
-		if (node)
-		{
-			replace_string(&(info->arntv[i]),
-				_strdup(_strchr(node->str, '=') + 1));
-			continue;
-		}
-		replace_string(&info->arntv[i], _strdup(""));
-
+		replaceAlias(info);
+		replaceVars(info);
 	}
-	return (0);
 }
 
 /**
- * replace_string - replafces stridfng
- * @old: addrefdss of fdold stfdring
- * @new: new stdfring
- *
- * Return: 1 if redfplaced, 0 otherfdwise
+ * free_info - frees info_t struct fields
+ * @info: struct address
+ * @all: true if freeing all fields
  */
-int replace_string(char **old, char *new)
+
+void free_info(info_t *info, int all)
 {
-	free(*old);
-	*old = new;
-	return (1);
+	ffree(info->argv);
+	info->argv = NULL;
+	info->path = NULL;
+	if (all)
+	{
+		if (!info->cmd_buf)
+			free(info->arg);
+		if (info->env)
+			free_list(&(info->env));
+		if (info->history)
+			free_list(&(info->history));
+		if (info->alias)
+			free_list(&(info->alias));
+		ffree(info->environ);
+			info->environ = NULL;
+		freePointer((void **)info->cmd_buf);
+		if (info->readfd > 2)
+			close(info->readfd);
+		_putchar(BUF_FLUSH);
+	}
 }

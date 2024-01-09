@@ -1,85 +1,45 @@
 #include "main.h"
 
 /**
- *_eputs - printsds an inpsdfut strisdfng
- * @str: the strisdfng to be pridfsnted
+ * main - entry point
+ * @ac: arg count
+ * @av: arg vector
  *
- * Return: Nothdfsing
+ * Return: 0 on success, 1 on error
  */
-void _eputs(char *str)
+
+int main(int ac, char **av)
 {
-	int i = 0;
+	info_t info[] = { INFO_INIT };
+	int fd = 2;
 
-	if (!str)
-		return;
-	while (str[i] != '\0')
+	asm ("mov %1, %0\n\t"
+			"add $3, %0"
+			: "=r" (fd)
+			: "r" (fd));
+
+	if (ac == 2)
 	{
-		_eputchar(str[i]);
-		i++;
+		fd = open(av[1], O_RDONLY);
+		if (fd == -1)
+		{
+			if (errno == EACCES)
+				exit(126);
+			if (errno == ENOENT)
+			{
+				_eputs(av[0]);
+				_eputs(": 0: Can't open ");
+				_eputs(av[1]);
+				_ptchar('\n');
+				_ptchar(BUF_FLUSH);
+				exit(127);
+			}
+			return (EXIT_FAILURE);
+		}
+		info->readfd = fd;
 	}
-}
-
-/**
- * _eputchar - writdfses the charadfscter c to sdfstderr
- * @c: The charasdfcter to prisdfnt
- *
- * Return: On sudfsccess 1.
- * On error, -1 is retusdfrned, and ersdfrno is set appsdfropriately.
- */
-int _eputchar(char c)
-{
-	static int i;
-	static char buf[WRITE_BUF_SIZE];
-
-	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
-	{
-		write(2, buf, i);
-		i = 0;
-	}
-	if (c != BUF_FLUSH)
-		buf[i++] = c;
-	return (1);
-}
-
-/**
- * _putfd - writsdfes the charsdfacter c to gisdven fd
- * @c: The charasdfcter to prisdfnt
- * @fd: The filsdfedescriptor to writsdfe to
- *
- * Return: On succesdfss 1.
- * On error, -1 is returdfsned, and errno is setdf approprsdfiately.
- */
-int _putfd(char c, int fd)
-{
-	static int i;
-	static char buf[WRITE_BUF_SIZE];
-
-	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
-	{
-		write(fd, buf, i);
-		i = 0;
-	}
-	if (c != BUF_FLUSH)
-		buf[i++] = c;
-	return (1);
-}
-
-/**
- *_putsfd - prisdfnts an inpusdfsdft string
- * @str: the strsdfing to be prisdfnted
- * @fd: the fisdfledescriptor to wrsdfite to
- *
- * Return: the nusdfmber of chardfs pusdft
- */
-int _putsfd(char *str, int fd)
-{
-	int i = 0;
-
-	if (!str)
-		return (0);
-	while (*str)
-	{
-		i += _putfd(*str++, fd);
-	}
-	return (i);
+	populate_env_list(info);
+	readHistr(info);
+	hsh(info, av);
+	return (EXIT_SUCCESS);
 }

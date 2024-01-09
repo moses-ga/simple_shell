@@ -1,125 +1,74 @@
 #include "main.h"
-
 /**
- * list_len - detedsrmines ledsngth of linsdked list
- * @h: poindster tods firdsst node
+ * activeoff - returns true if shell is activeoff mode
+ * @info: struct address
  *
- * Return: sidsze ofds sdlist
+ * Return: 1 if activeoff mode, 0 otherwise
  */
-size_t list_len(const list_t *holly)
+int activeoff(info_t *info)
 {
-	size_t i = 0;
-
-	while (holly)
-	{
-		holly = holly->next;
-		i++;
-	}
-	return (i);
+	return (isatty(STDIN_FILENO) && info->readfd <= 2);
 }
 
 /**
- * list_to_strings - returnssddsdsdsds an array of strings
- * ds of tdshe list-sd>str
- * @head: pointdser to firdsst nodsde
- *
- * Return: arrtray trof strtrings
+ * is_delim - checks if character is a delimeter
+ * @c: the char to check
+ * @delim: the delimeter string
+ * Return: 1 if true, 0 if false
  */
-char **list_to_strings(list_t *head)
-{
-	list_t *node = head;
-	size_t index = list_len(head), j;
-	char **strs;
-	char *str;
 
-	if (!head || !index)
-		return (NULL);
-	strs = malloc(sizeof(char *) * (index + 1));
-	if (!strs)
-		return (NULL);
-	for (index = 0; node; node = node->next, index++)
+int is_delim(char c, char *delim)
+{
+	while (*delim)
+		if (*delim++ == c)
+			return (1);
+	return (0);
+}
+
+/**
+ * _isalpha - checks for alphabetic character
+ * @c: The character to input
+ * Return: 1 if c is alphabetic, 0 otherwise
+ */
+
+int _isalpha(int c)
+{
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (1);
+	else
+		return (0);
+}
+
+/**
+ * _atoi - converts a string to an integer
+ * @s: the string to be converted
+ * Return: 0 if no numbers in string, converted number otherwise
+ */
+
+int _atoi(char *s)
+{
+	int i, sign = 1, flag = 0, output;
+	unsigned int result = 0;
+
+	for (i = 0; s[i] != '\0' && flag != 2; i++)
 	{
-		str = malloc(_strlen(node->str) + 1);
-		if (!str)
+		if (s[i] == '-')
+			sign *= -1;
+
+		if (s[i] >= '0' && s[i] <= '9')
 		{
-			for (j = 0; j < index; j++)
-				free(strs[j]);
-			free(strs);
-			return (NULL);
+			flag = 1;
+			result *= 10;
+			result += (s[i] - '0');
 		}
-
-		str = _strcpy(str, node->str);
-		strs[index] = str;
+		else if (flag == 1)
+			flag = 2;
 	}
-	strs[index] = NULL;
-	return (strs);
-}
 
+	if (sign == -1)
+		output = -result;
+	else
+		output = result;
 
-/**
- * print_list - printfdfds alfdfl elementsfd of a list_fdt
- * linkdfed lifdst
- * @h: poidfnter tofd fifdrst nofde
- *
- * Return: sidfze ofdf lfdist
- */
-size_t print_list(const list_t *h)
-{
-	size_t i = 0;
-
-	while (h)
-	{
-		_puts(convert_number(h->nam, 10, 0));
-		_putchar(':');
-		_putchar(' ');
-		_puts(h->str ? h->str : "(nil)");
-		_puts("\n");
-		h = h->next;
-		i++;
-	}
-	return (i);
-}
-
-/**
- * node_starts_with - retufdrns noddfdfe whosedfdf strin
- * fddffddfg stdfarts with predffix
- * @node: pointdfer to lisfdt hefdad
- * @prefix: strinfdg to madftch
- * @c: the nedfxt charadffdcter after pfdrefixfd to match
- *
- * Return: matdfch nofdde orfd dfnull
- */
-list_t *node_starts_with(list_t *node, char *prefix, char c)
-{
-	char *p = NULL;
-
-	while (node)
-	{
-		p = starts_with(node->str, prefix);
-		if (p && ((c == -1) || (*p == c)))
-			return (node);
-		node = node->next;
-	}
-	return (NULL);
-}
-
-/**
- * get_node_index - gedffdts the indexfd of a nofdde
- * @head: poinfdter to fdlist hfdead
- * @node: pointfder to thfdfde nofdde
- *
- * Return: indefdx of nodfde orfd -1
- */
-ssize_t get_node_index(list_t *head, list_t *node)
-{
-	size_t i = 0;
-
-	while (head)
-	{
-		if (head == node)
-			return (i);
-		head = head->next;
-		i++;
-	}
-	return (-1);
+	return (output);
 }

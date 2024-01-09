@@ -1,77 +1,95 @@
 #include "main.h"
-
 /**
- * _strlen - retudfrnsdf the lengtfdh of a strfding
- * @s: the strifdng whosfde lengtfdh to cdfheck
- *
- * Return: intefdger lengdfth of stfdring
+ * _myenv - prints the current environment
+ * @info: Structure containing potential arguments. Used to maintain
+ *          constant function prototype.
+ * Return: Always 0
  */
-int _strlen(char *s)
+
+int _myenv(info_t *info)
 {
-	int mas = 0;
-
-	if (!s)
-		return (0);
-
-	while (*s++)
-		mas++;
-	return (mas);
+	print_list_str(info->env);
+	return (0);
 }
 
 /**
- * _strcmp - perfdforms lexicogfdarphic compfdarison
- * odff two stdfrfdangs.
- * @s1: the firdfst stdfrang
- * @s2: the sedfcond strdfang
+ * _getenv - gets the value of an environ variable
+ * @info: Structure containing potential arguments. Used to maintain
+ * @name: env var name
  *
- * Return: negadftive if s1 < s2, posdfitive if s1 dfdf
- * > s2, zfdero if s1fd == s2
+ * Return: the value
  */
-int _strcmp(char *s1, char *s2)
+
+char *_getenv(info_t *info, const char *name)
 {
-	while (*s1 && *s2)
+	list_t *node = info->env;
+	char *p;
+
+	while (node)
 	{
-		if (*s1 != *s2)
-			return (*s1 - *s2);
-		s1++;
-		s2++;
+		p = starts_with(node->str, name);
+		if (p && *p)
+			return (p);
+		node = node->next;
 	}
-	if (*s1 == *s2)
+	return (NULL);
+}
+
+/**
+ * _mysetenviron - Initialize a new environment variable,
+ *             or modify an existing one
+ * @info: Structure containing potential arguments. Used to maintain
+ *        constant function prototype.
+ *  Return: Always 0
+ */
+
+int _mysetenviron(info_t *info)
+{
+	if (info->argc != 3)
+	{
+		_eputs("Incorrect number of arguements\n");
+		return (1);
+	}
+	if (_setenv(info, info->argv[1], info->argv[2]))
 		return (0);
-	else
-		return (*s1 < *s2 ? -1 : 1);
+	return (1);
 }
 
 /**
- * starts_with - chedfdfcks if needle stadfrts with hadfystack
- * @haystack: strifdng to seadfrch
- * @needle: the subsdftring to fdfind
- *
- * Return: addrdfess of nexdft char of haysdftafdck or NUdfLL
+ * _myunsetenv - Remove an environment variable
+ * @info: Structure containing potential arguments. Used to maintain
+ *        constant function prototype.
+ * Return: Always 0
  */
-char *starts_with(const char *haystack, const char *needle)
+int _myunsetenv(info_t *info)
 {
-	while (*needle)
-		if (*needle++ != *haystack++)
-			return (NULL);
-	return ((char *)haystack);
+	int i;
+
+	if (info->argc == 1)
+	{
+		_eputs("Too few arguements.\n");
+		return (1);
+	}
+	for (i = 1; i <= info->argc; i++)
+		_unsetenv(info, info->argv[i]);
+
+	return (0);
 }
 
 /**
- * _strcat - concatedfdfnates tdfwo strdfings
- * @dest: the desdfdftination bufdffer
- * @src: the sodfdfurce buffer
- *
- * Return: pointfder to desdftination bufdffer
+ * populate_env_list - populates env linked list
+ * @info: Structure containing potential arguments. Used to maintain
+ *          constant function prototype.
+ * Return: Always 0
  */
-char *_strcat(char *dest, char *src)
-{
-	char *ret = dest;
 
-	while (*dest)
-		dest++;
-	while (*src)
-		*dest++ = *src++;
-	*dest = *src;
-	return (ret);
+int populate_env_list(info_t *info)
+{
+	list_t *node = NULL;
+	size_t i;
+
+	for (i = 0; environ[i]; i++)
+		add_node_end(&node, environ[i], 0);
+	info->env = node;
+	return (0);
 }

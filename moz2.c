@@ -1,118 +1,147 @@
 #include "main.h"
 
 /**
- * _myhistory - displadfys the histdfory list, one commadfnd by
- * line, predfdfceded
- * with line nudfmbers, startidfng at 0.
- * @info: Strucdfture contaidfning potedfntial argudfments.
- * Used to maindftain
- * constdfdfant funcdftion protodftype.
- *  Return: Alwadfys 0
+ * getFileHistory - gets the history file
+ * @info: parameter struct
+ *
+ * Return: allocated string containg history file
  */
-int _myhistory(info_t *info)
+
+char *getFileHistory(info_t *info)
 {
-	print_list(info->hstry);
-	return (0);
+	char *buffr, *dir;
+
+	dir = _getenv(info, "HOME=");
+	if (!dir)
+		return (NULL);
+	buffr = malloc(sizeof(char) * (_strlen(dir) + _strlen(HIST_FILE) + 2));
+	if (!buffr)
+		return (NULL);
+	buffr[0] = 0;
+	_strcpy(buffr, dir);
+	_strcat(buffr, "/");
+	_strcat(buffr, HIST_FILE);
+	return (buffr);
 }
 
 /**
- * unset_alias - sedffgts alias to sfgtring
- * @info: paramefdgter strucfgt
- * @str: the stfring aliasf
+ * writeHistr - creates a file, or appends to an existing file
+ * @info: the parameter struct
  *
- * Return: Always 0 on succfess, 1 on errfdgor
+ * Return: 1 on success, else -1
  */
-int unset_alias(info_t *info, char *str)
+
+int writeHistr(info_t *info)
 {
-	char *p, c;
-	int ret;
+	ssize_t fd;
+	char *filename = getFileHistory(info);
+	list_t *node = NULL;
 
-	p = _strchr(str, '=');
-	if (!p)
-		return (1);
-	c = *p;
-	*p = 0;
-	ret = delete_node_at_index(&(info->aliyas),
-		get_node_index(info->aliyas, node_starts_with(info->aliyas, str, -1)));
-	*p = c;
-	return (ret);
-}
+	if (!filename)
+		return (-1);
 
-/**
- * set_alias - seffgts alias to strfgding
- * @info: paramedfgter strufct
- * @str: the strifgng alifgas
- *
- * Return: Alwfdays 0 on sufgccess, 1 on error
- */
-int set_alias(info_t *info, char *str)
-{
-	char *p;
-
-	p = _strchr(str, '=');
-	if (!p)
-		return (1);
-	if (!*++p)
-		return (unset_alias(info, str));
-
-	unset_alias(info, str);
-	return (add_node_end(&(info->aliyas), str, 0) == NULL);
-}
-
-/**
- * print_alias - prifnts an alidffas string
- * @node: the alias node
- *
- * Return: Always 0 on sucdffdcess, 1 on error
- */
-int print_alias(list_t *node)
-{
-	char *p = NULL, *a = NULL;
-
-	if (node)
+	fd = open(filename, O_CREAT | O_TRUNC | O_RDWR, 0644);
+	free(filename);
+	if (fd == -1)
+		return (-1);
+	for (node = info->history; node; node = node->next)
 	{
-		p = _strchr(node->str, '=');
-		for (a = node->str; a <= p; a++)
-			_putchar(*a);
-		_putchar('\'');
-		_puts(p + 1);
-		_puts("'\n");
-		return (0);
+		_putsfd(node->str, fd);
+		_putfd('\n', fd);
 	}
+	_putfd(BUF_FLUSH, fd);
+	close(fd);
 	return (1);
 }
 
 /**
- * _myalias - mimics thdfe aliasf builtin (man alias)
- * @info: Structure contafgining potefgdntial argumdfgents.
- * Used to maidfgntain
- *          constdfgdfgant function protofgdtype.
- *  Return: Alwadfgys 0
+ * readHistr - reads history from file
+ * @info: the parameter struct
+ *
+ * Return: histcount on success, 0 otherwise
  */
-int _myalias(info_t *info)
+
+int readHistr(info_t *info)
 {
-	int i = 0;
-	char *p = NULL;
+	int i, last = 0, linecount = 0;
+	ssize_t fd, rdlen, fsize = 0;
+	struct stat st;
+	char *buffr = NULL, *filename = getFileHistory(info);
+
+	if (!filename)
+		return (0);
+
+	fd = open(filename, O_RDONLY);
+	free(filename);
+	if (fd == -1)
+		return (0);
+	if (!fstat(fd, &st))
+		fsize = st.st_size;
+	if (fsize < 2)
+		return (0);
+	buffr = malloc(sizeof(char) * (fsize + 1));
+	if (!buffr)
+		return (0);
+	rdlen = read(fd, buffr, fsize);
+	buffr[fsize] = 0;
+	if (rdlen <= 0)
+		return (free(buffr), 0);
+	close(fd);
+	for (i = 0; i < fsize; i++)
+		if (buffr[i] == '\n')
+		{
+			buffr[i] = 0;
+			linkHistr(info, buffr + last, linecount++);
+			last = i + 1;
+		}
+	if (last != i)
+		linkHistr(info, buffr + last, linecount++);
+	free(buffr);
+	info->histcount = linecount;
+	while (info->histcount-- >= HIST_MAX)
+		delete_node_at_index(&(info->history), 0);
+	linkedNumberHistr(info);
+	return (info->histcount);
+}
+
+/**
+ * linkHistr - adds entry to a history linked list
+ * @info: Structure containing potential arguments. Used to maintain
+ * @buffr: buffer
+ * @linecount: the history linecount, histcount
+ *
+ * Return: Always 0
+ */
+
+int linkHistr(info_t *info, char *buffr, int linecount)
+{
 	list_t *node = NULL;
 
-	if (info->arntc == 1)
-	{
-		node = info->aliyas;
-		while (node)
-		{
-			print_alias(node);
-			node = node->next;
-		}
-		return (0);
-	}
-	for (i = 1; info->arntv[i]; i++)
-	{
-		p = _strchr(info->arntv[i], '=');
-		if (p)
-			set_alias(info, info->arntv[i]);
-		else
-			print_alias(node_starts_with(info->aliyas, info->arntv[i], '='));
-	}
+	if (info->history)
+		node = info->history;
+	add_node_end(&node, buffr, linecount);
 
+	if (!info->history)
+		info->history = node;
 	return (0);
+}
+
+/**
+ * linkedNumberHistr - renumbers the history linked list after changes
+ * @info: Structure containing potential arguments. Used to maintain
+ *
+ * Return: the new histcount
+ */
+
+int linkedNumberHistr(info_t *info)
+{
+	list_t *node = info->history;
+	int i = 0;
+
+	while (node)
+	{
+		node->num = i++;
+		node = node->next;
+	}
+	return (info->histcount = i);
 }

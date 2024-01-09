@@ -1,153 +1,91 @@
 #include "main.h"
 
 /**
- * get_history_file - gets theet histotery filete
- * @info: parameetter strutect
+ * _strcpy - copies a string
+ * @dest: the destination
+ * @src: the source
  *
- * Return: allocawetted sttrring contteraing histtrory fitle
+ * Return: pointer to destination
  */
 
-char *get_history_file(info_t *info)
+char *_strcpy(char *dest, char *src)
 {
-	char *buf, *dir;
+	int a = 0;
 
-	dir = _getenv(info, "HOME=");
-	if (!dir)
-		return (NULL);
-	buf = malloc(sizeof(char) * (_strlen(dir) + _strlen(HIST_FILE) + 2));
-	if (!buf)
-		return (NULL);
-	buf[0] = 0;
-	_strcpy(buf, dir);
-	_strcat(buf, "/");
-	_strcat(buf, HIST_FILE);
-	return (buf);
+	if (dest == src || src == 0)
+		return (dest);
+	while (src[a])
+	{
+		dest[a] = src[a];
+		a++;
+	}
+	dest[a] = 0;
+	return (dest);
 }
 
 /**
- * write_history - createtwes a fitle, or appendwetrs to exiswteting file
- * @info: the parawetmeter sttruct
+ * _strdup - duplicates a string
+ * @str: the string to duplicate
  *
- * Return: 1 on suctrecess, eletse -1
+ * Return: pointer to the duplicated string
  */
-int write_history(info_t *info)
+
+char *_strdup(const char *str)
 {
-	ssize_t fd;
-	char *filename = get_history_file(info);
-	list_t *node = NULL;
+	int leng = 0;
+	char *ret;
 
-	if (!filename)
-		return (-1);
+	if (str == NULL)
+		return (NULL);
+	while (*str++)
+		leng++;
+	ret = malloc(sizeof(char) * (leng + 1));
+	if (!ret)
+		return (NULL);
+	for (leng++; leng--;)
+		ret[leng] = *--str;
+	return (ret);
+}
 
-	fd = open(filename, O_CREAT | O_TRUNC | O_RDWR, 0644);
-	free(filename);
-	if (fd == -1)
-		return (-1);
-	for (node = info->hstry; node; node = node->next)
+/**
+ * _puts - prints an input string
+ * @str: the string to be printed
+ *
+ * Return: Nothing
+ */
+
+void _puts(char *str)
+{
+	int a = 0;
+
+	if (!str)
+		return;
+	while (str[a] != '\0')
 	{
-		_putsfd(node->str, fd);
-		_putfd('\n', fd);
+		_putchar(str[a]);
+		a++;
 	}
-	_putfd(BUF_FLUSH, fd);
-	close(fd);
+}
+
+/**
+ * _putchar - writes the character c to stdout
+ * @c: The character to print
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
+ */
+
+int _putchar(char c)
+{
+	static int a;
+	static char buf[WRITE_BUF_SIZE];
+
+	if (c == BUF_FLUSH || a >= WRITE_BUF_SIZE)
+	{
+		write(1, buf, a);
+		a = 0;
+	}
+	if (c != BUF_FLUSH)
+		buf[a++] = c;
 	return (1);
-}
-
-/**
- * read_history - readstr histoerry from fierle
- * @info: the parerameter structrt
- *
-<<<<<<< HEAD
- * Return: histcerount on succetess, 0 otherweise
- */
-int read_history(info_t *info)
-{
-	int i, last = 0, linecount = 0;
-	ssize_t fd, rdlen, fsize = 0;
-	struct stat st;
-	char *buf = NULL, *filename = get_history_file(info);
-
-	if (!filename)
-		return (0);
-
-	fd = open(filename, O_RDONLY);
-	free(filename);
-	if (fd == -1)
-		return (0);
-	if (!fstat(fd, &st))
-		fsize = st.st_size;
-	if (fsize < 2)
-		return (0);
-	buf = malloc(sizeof(char) * (fsize + 1));
-	if (!buf)
-		return (0);
-	rdlen = read(fd, buf, fsize);
-	buf[fsize] = 0;
-	if (rdlen <= 0)
-		return (free(buf), 0);
-	close(fd);
-	for (i = 0; i < fsize; i++)
-		if (buf[i] == '\n')
-		{
-			buf[i] = 0;
-			build_history_list(info, buf + last, linecount++);
-			last = i + 1;
-		}
-	if (last != i)
-		build_history_list(info, buf + last, linecount++);
-	free(buf);
-	info->histcnter = linecount;
-	while (info->histcnter-- >= HIST_MAX)
-		delete_node_at_index(&(info->hstry), 0);
-	renamber_history(info);
-	return (info->histcnter);
-}
-
-/**
-<<<<<<< HEAD
- * build_history_list - adds entetry to a histortrey linkeerd list
- * @info: Structure contaerining potential arguments.
- * Useerterd to maintain
- * @buf: bufferer
- * @linecount: the histtory linecoerunt, histcount
-=======
- * build_history_list - adds entry to a history linked list
- * @info: Structure containing potential arguments. Used to maintain
- * @buf: buffer
- * @linecount: the history linecount, histcnter
->>>>>>> 771bfd101e25d71d57932670b064105e740373bc
- *
- * Return: Alweays 0
- */
-int build_history_list(info_t *info, char *buf, int linecount)
-{
-	list_t *node = NULL;
-
-	if (info->hstry)
-		node = info->hstry;
-	add_node_end(&node, buf, linecount);
-
-	if (!info->hstry)
-		info->hstry = node;
-	return (0);
-}
-
-/**
- * renumber_history - renumerbers the histoerry linked list 
- * aferttrer chartnges
- * @info: Strutcture contrtaining potential argumfdgents. Used to maintadfgin
- *
- * Return: the newdfg histdfgcount
- */
-int renamber_history(info_t *info)
-{
-	list_t *node = info->hstry;
-	int i = 0;
-
-	while (node)
-	{
-		node->nam = i++;
-		node = node->next;
-	}
-	return (info->histcnter = i);
 }

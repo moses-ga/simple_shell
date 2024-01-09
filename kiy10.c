@@ -1,86 +1,79 @@
 #include "main.h"
 
 /**
- * is_cmd - detersdmitrnes if a fildtrse is an executadtrtrsdsble command
- * @info: the ifdnfo strucdffdt
- * @path: path to the file
+ * _strlen - returns the length of a string
+ * @s: the string whose length to check
  *
- * Return: 1 if trtrue, 0 othfggerwise
+ * Return: integer length of string
  */
-int is_cmd(info_t *info, char *path)
-{
-	struct stat st;
 
-	(void)info;
-	if (!path || stat(path, &st))
+int _strlen(char *s)
+{
+	int i = 0;
+
+	if (!s)
 		return (0);
 
-	if (st.st_mode & S_IFREG)
-	{
-		return (1);
-	}
-	return (0);
-}
-
-/**
- * dup_chars - duplitrcates characttrers
- * @pathstr: the PtrATH strtring
- * @start: starttrtring index
- * @stop: stoprtping indrtex
- *
- * Return: pointerer to new beruffer
- */
-char *dup_chars(char *pathstr, int start, int stop)
-{
-	static char buf[1024];
-	int i = 0, k = 0;
-
-	for (k = 0, i = start; i < stop; i++)
-		if (pathstr[i] != ':')
-			buf[k++] = pathstr[i];
-	buf[k] = 0;
-	return (buf);
-}
-
-/**
- * find_path - fiernds this ercmd in terhe PATHer string
- * @info: the infosd strsduct
- * @pathstr: the PAsdTH strsding
- * @cmd: the cmsdd to fisdnd
- *
- * Return: full patsdh of cmd if sdsdfound or NULL
- */
-char *find_path(info_t *info, char *pathstr, char *cmd)
-{
-	int i = 0, curr_pos = 0;
-	char *path;
-
-	if (!pathstr)
-		return (NULL);
-	if ((_strlen(cmd) > 2) && starts_with(cmd, "./"))
-	{
-		if (is_cmd(info, cmd))
-			return (cmd);
-	}
-	while (1)
-	{
-		if (!pathstr[i] || pathstr[i] == ':')
-		{
-			path = dup_chars(pathstr, curr_pos, i);
-			if (!*path)
-				_strcat(path, cmd);
-			else
-			{
-				_strcat(path, "/");
-				_strcat(path, cmd);
-			}
-			if (is_cmd(info, path))
-				return (path);
-			if (!pathstr[i])
-				break;
-			curr_pos = i;
-		}
+	while (*s++)
 		i++;
+	return (i);
+}
+
+/**
+ * _strcmp - performs lexicogarphic comparison of two strangs.
+ * @s1: the first strang
+ * @s2: the second strang
+ *
+ * Return: negative if s1 < s2, positive if s1 > s2, zero if s1 == s2
+ */
+
+int _strcmp(char *s1, char *s2)
+{
+	while (*s1 && *s2)
+	{
+		if (*s1 != *s2)
+			return (*s1 - *s2);
+		s1++;
+		s2++;
 	}
-	return (NULL);
+	if (*s1 == *s2)
+		return (0);
+	else
+		return (*s1 < *s2 ? -1 : 1);
+}
+
+/**
+ * starts_with - checks if needle starts with haystack
+ * @haystack: string to search
+ * @needle: the substring to find
+ *
+ * Return: address of next char of haystack or NULL
+ */
+
+char *starts_with(const char *haystack, const char *needle)
+{
+	while (*needle)
+		if (*needle++ != *haystack++)
+			return (NULL);
+	return ((char *)haystack);
+}
+
+/**
+ * _strcat - concatenates two strings
+ * @dest: the destination buffer
+ * @src: the source buffer
+ *
+ * Return: pointer to destination buffer
+ */
+
+char *_strcat(char *dest, char *src)
+{
+	char *ret = dest;
+
+	while (*dest)
+		dest++;
+	while (*src)
+		*dest++ = *src++;
+	*dest = *src;
+	return (ret);
 }
